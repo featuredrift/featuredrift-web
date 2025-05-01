@@ -23,10 +23,10 @@ function App() {
         <img src={art} alt="FeatureDrift AI Art" />
       </div>
         <div>
-          <LinkButton to="https://github.com/featuredrift/featuredrift/fork">Deface The UI</LinkButton>
+          <LinkButton to="https://github.com/featuredrift/featuredrift/fork">Hack the Skin</LinkButton>
         </div>
         <div>
-          <LinkButton to="https://github.com/featuredrift/featuredrift/issues/new?labels=enhancement">Request Core Drift</LinkButton>
+          <LinkButton to="https://github.com/featuredrift/featuredrift/issues/new?labels=enhancement">Petition for Core Drift</LinkButton>
         </div>
     </div>
   )
