@@ -23,7 +23,7 @@ function App() {
         <img src={art} alt="FeatureDrift AI Art" />
       </div>
         <div>
-          <LinkButton to="https://github.com/featuredrift/featuredrift/fork">Deface the UI</LinkButton>
+          <LinkButton to="https://github.com/featuredrift/featuredrift/fork">Deface The UI</LinkButton>
         </div>
         <div>
           <LinkButton to="https://github.com/featuredrift/featuredrift/issues/new?labels=enhancement">Request Core Drift</LinkButton>
