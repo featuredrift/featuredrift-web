@@ -15,7 +15,7 @@ jobs:
         
       - name: Docker Build
         run: |
-          docker build -t featuredrift-web:latest .
+          docker build -t featuredrift:latest .
 
       - name: Push to GHCR
         env:
