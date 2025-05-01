@@ -28,3 +28,8 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker tag featuredrift:latest ghcr.io/${{ github.repository_owner }}/featuredrift:latest
           docker push ghcr.io/${{ github.repository_owner }}/featuredrift:latest
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
