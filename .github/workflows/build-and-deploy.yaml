@@ -32,3 +32,12 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Install kubeconfig for DigitalOcean
+        run: |
+          doctl kubernetes cluster kubeconfig save thezanke-k8s-do-2
+          echo "Kubeconfig installed"
+        
+      - name: Deploy to DigitalOcean
+        run: |
+          kubectl rollout restart deployment featuredrift-web
