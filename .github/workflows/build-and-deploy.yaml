@@ -40,4 +40,4 @@ jobs:
         
       - name: Deploy to DigitalOcean
         run: |
-          kubectl rollout restart deployment featuredrift-web
+          kubectl rollout restart deployment featuredrift-web -n apps
