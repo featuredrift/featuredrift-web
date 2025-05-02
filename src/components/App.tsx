@@ -22,12 +22,12 @@ function App() {
       <div className="max-h-2/3 flex flex-row justify-center align-middle">
         <img src={art} alt="FeatureDrift AI Art" />
       </div>
-        <div>
-          <LinkButton to="https://github.com/featuredrift/featuredrift/fork">Hack the Skin</LinkButton>
-        </div>
-        <div>
-          <LinkButton to="https://github.com/featuredrift/featuredrift/issues/new?labels=enhancement">Petition for Drift</LinkButton>
-        </div>
+      <div>
+        <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">Hack the Skin</LinkButton>
+      </div>
+      <div>
+        <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">Petition for Drift</LinkButton>
+      </div>
     </div>
   )
 }
