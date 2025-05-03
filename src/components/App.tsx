@@ -82,22 +82,22 @@ function LoginPortal({ sessionPromise }: { sessionPromise: SessionPromise }) {
 
 function App() {
   return (
-    <div className="flex flex-col gap-8 justify-center items-center">
-      <div className="flex flex-row justify-center align-middle">
-        <img src={art} alt="FeatureDrift AI Art" className="max-h-[50vh] w-auto" />
-      </div>
-      <WithSessionPromise
-        render={(sessionPromise) => (
-          <LoginPortal sessionPromise={sessionPromise} />
-        )}
-      />
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">Hack the Skin</LinkButton>
-      </div>
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">Petition for Drift</LinkButton>
-      </div>
-    </div>
+    <WithSessionPromise
+      render={(sessionPromise) => (
+        <div className="flex flex-col gap-8 justify-center items-center">
+          <div className="flex flex-row justify-center align-middle">
+            <img src={art} alt="FeatureDrift AI Art" className="max-h-[50vh] w-auto motion-safe:animate-pulse " />
+          </div>
+            <LoginPortal sessionPromise={sessionPromise} />
+          <div>
+            <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">Hack the Skin</LinkButton>
+          </div>
+          <div>
+            <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">Petition for Drift</LinkButton>
+          </div>
+        </div>
+      )}
+    />
   )
 }
 
