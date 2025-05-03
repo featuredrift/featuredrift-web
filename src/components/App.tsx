@@ -83,8 +83,8 @@ function LoginPortal({ sessionPromise }: { sessionPromise: SessionPromise }) {
 function App() {
   return (
     <div className="flex flex-col gap-8 justify-center items-center">
-      <div className="max-h-2/3 flex flex-row justify-center align-middle">
-        <img src={art} alt="FeatureDrift AI Art" />
+      <div className="flex flex-row justify-center align-middle">
+        <img src={art} alt="FeatureDrift AI Art" className="max-h-[50vh] w-auto" />
       </div>
       <WithSessionPromise
         render={(sessionPromise) => (
