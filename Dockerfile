@@ -1,4 +1,5 @@
 FROM node:23.11-slim AS builder
+LABEL org.opencontainers.image.source=https://github.com/featuredrift/featuredrift-web
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
