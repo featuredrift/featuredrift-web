@@ -8,6 +8,7 @@ export function AuthLoginView() {
         <img
           src={art}
           alt="FeatureDrift AI Art"
+          loading="eager"
           className="max-h-[50vh] w-auto motion-safe:animate-pulse"
         />
       </div>
