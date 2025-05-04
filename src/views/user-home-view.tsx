@@ -12,9 +12,9 @@ export function HomeUserView({ session }: { session: SessionResponse }) {
           <div className="italic">
             <>You have been activated</>
             <span className="text-cyan-500">;</span>
-            <> expect to be </>
-            <span className="text-cyan-500">contacted</span>
-            <> soon...</>
+            <> expect to be contacted </>
+            <span className="text-cyan-500">soon</span>
+            <>...</>
           </div>
           <div className="text-right text-xl italic">
             — F<span className="text-cyan-500">3</span>tch
