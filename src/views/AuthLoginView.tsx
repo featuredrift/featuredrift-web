@@ -1,15 +1,12 @@
 import { LinkButton } from '../components/LinkButton';
-import art from '/featuredrift-ai-art.png';
 
 export function AuthLoginView() {
   return (
     <div className="flex flex-col gap-8 justify-center items-center min-h-full">
       <div className="flex flex-row justify-center align-middle">
         <img
-          src={art}
+          src="/assets/featuredrift-ai-art.png"
           alt="FeatureDrift AI Art"
-          loading="eager"
-          fetchPriority="high"
           className="max-h-[50vh] w-auto motion-safe:animate-pulse"
         />
       </div>
