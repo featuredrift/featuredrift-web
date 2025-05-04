@@ -4,6 +4,56 @@ html {
   height: 100%;
 }
 
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-Light.woff2') format('woff2');
+  font-weight: lighter;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-LightItalic.woff2') format('woff2');
+  font-weight: lighter;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-RegularItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Office Code Pro D';
+  src: url('/assets/fonts/OfficeCodeProD-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
 @theme {
   --animate-pulse: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --font-mono: 'Office Code Pro D', monospace;
 }
