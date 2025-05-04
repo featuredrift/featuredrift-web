@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { HTMLAttributeAnchorTarget, PropsWithChildren, Suspense, use } from 'react';
 import art from '/featuredrift-ai-art.png';
-import axios from 'axios';
 
 function LinkButton({
   to,
@@ -67,11 +67,11 @@ function LoginPortal({ sessionPromise }: { sessionPromise: SessionPromise }) {
 
   return (
     <>
-      <div className='text-white'>
+      <code>
         <pre>
           {JSON.stringify(session, null, 2)}
         </pre>
-      </div>
+      </code>
 
       <div>
         <LinkButton to="/auth/logout" target="_self">Logout</LinkButton>
@@ -88,7 +88,7 @@ function App() {
           <div className="flex flex-row justify-center align-middle">
             <img src={art} alt="FeatureDrift AI Art" className="max-h-[50vh] w-auto motion-safe:animate-pulse " />
           </div>
-            <LoginPortal sessionPromise={sessionPromise} />
+          <LoginPortal sessionPromise={sessionPromise} />
           <div>
             <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">Hack the Skin</LinkButton>
           </div>
