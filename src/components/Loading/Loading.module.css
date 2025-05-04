@@ -1,0 +1,30 @@
+.loader {
+  display: block;
+}
+
+.spin {
+  animation: spin 6s linear infinite;
+  transform-origin: 60px 60px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.letter {
+  display: inline-block;
+  animation:
+    jitter 2.4s infinite ease-in-out alternate,
+    pulseColor 2.4s infinite ease-in-out;
+}
+
+@keyframes jitter {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(1px, -1px); }
+  66%      { transform: translate(-1px, 1px); }
+}
+
+@keyframes pulseColor {
+  0%, 100% { opacity: 0.8; }
+  50%      { opacity: 1;   }
+}

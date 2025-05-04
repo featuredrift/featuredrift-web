@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Suspense } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import type { SessionPromise } from '../types';
+import { LoadingView } from '../views/LoadingView';
 
 async function getSession(): SessionPromise {
   const res = await axios.get('/auth/verify', { withCredentials: true });
@@ -11,15 +12,11 @@ async function getSession(): SessionPromise {
   return res.data;
 }
 
-function SessionLoading() {
-  return <div className="text-2xl">Loading...</div>;
-}
-
 export function AppRoot() {
   const sessionPromise = getSession().catch(() => null);
 
   return (
-    <Suspense fallback={<SessionLoading />}>
+    <Suspense fallback={<LoadingView />}>
       <MainLayout sessionPromise={sessionPromise} />
     </Suspense>
   );
