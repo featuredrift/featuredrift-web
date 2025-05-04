@@ -19,4 +19,6 @@
     border-purple-700
     hover:border-transparent
     active:border-cyan-600;
+
+  line-height: 35px;
 }
