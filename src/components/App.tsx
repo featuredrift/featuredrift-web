@@ -1,4 +1,5 @@
 import axios from 'axios';
+import classNames from 'classnames';
 import type { HTMLAttributeAnchorTarget, PropsWithChildren } from 'react';
 import { Suspense, use } from 'react';
 import art from '/featuredrift-ai-art.png';
@@ -45,25 +46,26 @@ function SessionLoading() {
   return <div className="text-2xl">Loading...</div>;
 }
 
-function WithSessionPromise({
-  render,
-}: {
-  render: (sessionPromise: SessionPromise) => React.ReactNode;
-}) {
-  const sessionPromise = getSession().catch(() => null);
-
-  return (
-    <Suspense fallback={<SessionLoading />}>{render(sessionPromise)}</Suspense>
-  );
-}
-
 function UserLoginView() {
   return (
-    <div>
+    <>
       <LinkButton to="/auth/login" target="_self">
         Login
       </LinkButton>
-    </div>
+    </>
+  );
+}
+
+function HomeUserView({ session }: { session: SessionResponse }) {
+  return (
+    <>
+      <code>
+        <pre>{JSON.stringify(session, null, 2)}</pre>
+      </code>
+      <LinkButton to="/auth/logout" target="_self">
+        Logout
+      </LinkButton>
+    </>
   );
 }
 
@@ -71,55 +73,45 @@ function MainLayout({ sessionPromise }: { sessionPromise: SessionPromise }) {
   const session = use(sessionPromise);
   const isLoggedIn = session?.user !== undefined;
 
-  if (isLoggedIn) {
-    return <div></div>;
-  }
-
   return (
-    <div className="flex flex-col gap-8 justify-center items-center border-4 border-purple-700 p-8 h-full overflow-auto">
-      <div className="flex flex-row justify-center align-middle">
-        <img
-          src={art}
-          alt="FeatureDrift AI Art"
-          className="max-h-[50vh] w-auto motion-safe:animate-pulse"
-        />
-      </div>
+    <div
+      className={classNames('p-8 h-full overflow-auto', {
+        'border-4 border-purple-700': isLoggedIn,
+      })}
+    >
+      <div className="flex flex-col gap-8 justify-center items-center min-h-full">
+        <div className="flex flex-row justify-center align-middle">
+          <img
+            src={art}
+            alt="FeatureDrift AI Art"
+            className="max-h-[50vh] w-auto motion-safe:animate-pulse"
+          />
+        </div>
 
-      {!isLoggedIn && <UserLoginView />}
+        {isLoggedIn ? <HomeUserView session={session} /> : <UserLoginView />}
 
-      <div>
-        {isLoggedIn && (
-          <LinkButton to="/auth/logout" target="_self">
-            Logout
+        <div>
+          <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
+            Hack the Skin
           </LinkButton>
-        )}
-        {!isLoggedIn && (
-          <LinkButton to="/auth/login" target="_self">
-            Login
+        </div>
+        <div>
+          <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">
+            Petition for Drift
           </LinkButton>
-        )}
-      </div>
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
-          Hack the Skin
-        </LinkButton>
-      </div>
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">
-          Petition for Drift
-        </LinkButton>
+        </div>
       </div>
     </div>
   );
 }
 
 function App() {
+  const sessionPromise = getSession().catch(() => null);
+
   return (
-    <WithSessionPromise
-      render={(sessionPromise) => (
-        <MainLayout sessionPromise={sessionPromise} />
-      )}
-    />
+    <Suspense fallback={<SessionLoading />}>
+      <MainLayout sessionPromise={sessionPromise} />
+    </Suspense>
   );
 }
 
