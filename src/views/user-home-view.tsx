@@ -5,8 +5,8 @@ export function HomeUserView({ session }: { session: SessionResponse }) {
   return (
     <>
       <div className="h-full flex items-center justify-center">
-        <div className="inline-flex flex-col text-left text-3xl gap-1 text-purple-600 animate-pulse">
-          <div className="font-bold text-2xl">
+        <div className="inline-flex flex-col text-left text-2xl gap-1 text-purple-600 animate-pulse">
+          <div className="font-bold">
             <span className="text-cyan-500">{session.user.displayName}</span>,
           </div>
           <div className="italic">
