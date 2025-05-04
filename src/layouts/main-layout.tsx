@@ -20,9 +20,10 @@ export default function MainLayout({
 
   return (
     <div
-      className={classNames('p-8 h-full overflow-auto relative', {
-        'border-4 border-purple-700': isLoggedIn,
-      })}
+      className={classNames(
+        'p-8 h-full overflow-auto relative border-2',
+        isLoggedIn ? 'border-purple-700' : 'border-transparent',
+      )}
     >
       {view}
     </div>
