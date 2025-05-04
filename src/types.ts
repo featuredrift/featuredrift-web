@@ -3,7 +3,8 @@ export type SessionResponse = {
   user: {
     id: number;
     discordId: string;
-    discordUsername: string;
+    username: string;
+    displayName: string;
     avatar: string | null;
   };
 };

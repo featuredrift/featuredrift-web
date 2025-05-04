@@ -4,24 +4,25 @@ import type { SessionResponse } from '../types';
 export function HomeUserView({ session }: { session: SessionResponse }) {
   return (
     <>
-      <CloseButton />
-      <div className="text-center text-purple-600">
-        <div className="inline-flex flex-col text-left text-xl">
-          <div className="font-bold text-cyan-500">
-            {session.user.discordUsername},
+      <div className="h-full flex items-center justify-center">
+        <div className="inline-flex flex-col text-left text-xl gap-2 text-purple-600">
+          <div className="font-bold">
+            <span className="text-cyan-500">{session.user.displayName}</span>,
           </div>
           <div className="italic">
-            You have been <span className="text-cyan-500">activated</span>.
+            You have been activated<span className="text-cyan-500">;</span>
           </div>
           <div className="italic">
-            Expect to be <span className="text-cyan-500">contacted</span>{' '}
-            soon...
+            <>expect to be </>
+            <span className="text-cyan-500">contacted</span>
+            <> soon...</>
           </div>
-          <div className="text-right text-base italic">
+          <div className="text-right text-base">
             — F<span className="text-cyan-500">3</span>tch
           </div>
         </div>
       </div>
+      <CloseButton />
     </>
   );
 }
