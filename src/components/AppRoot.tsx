@@ -15,7 +15,7 @@ function SessionLoading() {
   return <div className="text-2xl">Loading...</div>;
 }
 
-function App() {
+export function AppRoot() {
   const sessionPromise = getSession().catch(() => null);
 
   return (
@@ -24,5 +24,3 @@ function App() {
     </Suspense>
   );
 }
-
-export default App;
