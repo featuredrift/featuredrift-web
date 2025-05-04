@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { use } from 'react';
 import type { SessionPromise } from '../types';
-import { AuthLoginView } from '../views/AuthLoginView';
-import { HomeUserView } from '../views/UserHomeView';
+import { AuthLoginView } from '../views/auth-login-view';
+import { HomeUserView } from '../views/user-home-view';
 
 export default function MainLayout({
   sessionPromise,

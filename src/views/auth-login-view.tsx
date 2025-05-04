@@ -1,4 +1,4 @@
-import { LinkButton } from '../components/LinkButton';
+import { LinkButton } from '../components/link-button/link-button';
 
 export function AuthLoginView() {
   return (

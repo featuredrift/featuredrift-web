@@ -1,4 +1,4 @@
-import styles from './Loading.module.css';
+import styles from './loading.module.css';
 
 export type LoadingSize = 'sm' | 'md' | 'lg' | 'xl';
 export interface LoadingProps {

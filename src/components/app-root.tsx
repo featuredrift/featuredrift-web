@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Suspense } from 'react';
-import MainLayout from '../layouts/MainLayout';
+import MainLayout from '../layouts/main-layout';
 import type { SessionPromise } from '../types';
-import { LoadingView } from '../views/LoadingView';
+import { LoadingView } from '../views/loading-view';
 
 async function getSession(): SessionPromise {
   const res = await axios.get('/auth/verify', { withCredentials: true });
