@@ -11,7 +11,7 @@ export function AuthLoginView() {
         />
       </div>
       <LinkButton to="/auth/login" target="_self">
-        Login
+        Play
       </LinkButton>
       <div>
         <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
