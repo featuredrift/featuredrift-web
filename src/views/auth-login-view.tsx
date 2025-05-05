@@ -11,18 +11,11 @@ export function AuthLoginView() {
         />
       </div>
       <LinkButton to="/auth/login" target="_self">
-        Play
+        Begin Drift
       </LinkButton>
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
-          Hack the Skin
-        </LinkButton>
-      </div>
-      <div>
-        <LinkButton to="https://github.com/featuredrift/featuredrift-web/issues/new?labels=enhancement">
-          Petition for Drift
-        </LinkButton>
-      </div>
+      <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
+        Hack the Skin
+      </LinkButton>
     </div>
   );
 }

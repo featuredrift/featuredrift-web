@@ -15,7 +15,7 @@
     hover:bg-purple-600
     active:bg-purple-700
 
-    border-2
+    border-2 rounded-xs
     border-purple-700
     hover:border-transparent
     active:border-cyan-600;
