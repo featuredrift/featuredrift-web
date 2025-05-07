@@ -1,13 +1,13 @@
 import { CloseButton } from '../components/close-button/close-button';
-import type { SessionResponse } from '../types';
+import type { PlayerResponse } from '../types';
 
-export function HomeUserView({ session }: { session: SessionResponse }) {
+export function HomeUserView({ player }: { player: PlayerResponse }) {
   return (
     <>
       <div className="h-full flex items-center justify-center">
         <div className="inline-flex flex-col text-left text-2xl gap-1 text-purple-600 animate-pulse">
           <div>
-            <span className="text-cyan-500">{session.user.displayName}</span>,
+            <span className="text-cyan-500">{player.displayName}</span>,
           </div>
           <div className="italic">
             <>You have been activated</>

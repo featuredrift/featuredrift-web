@@ -1,19 +1,19 @@
 import classNames from 'classnames';
 import { use } from 'react';
-import type { SessionPromise } from '../types';
+import type { SessionPromise as PlayerPromise } from '../types';
 import { AuthLoginView } from '../views/auth-login-view';
 import { HomeUserView } from '../views/user-home-view';
 
 export default function MainLayout({
-  sessionPromise,
+  playerPromise,
 }: {
-  sessionPromise: SessionPromise;
+  playerPromise: PlayerPromise;
 }) {
-  const session = use(sessionPromise);
-  const isLoggedIn = session?.user !== undefined;
+  const player = use(playerPromise);
+  const isLoggedIn = player !== null;
 
   const view = isLoggedIn ? (
-    <HomeUserView session={session} />
+    <HomeUserView player={player} />
   ) : (
     <AuthLoginView />
   );

@@ -4,20 +4,29 @@ import MainLayout from '../layouts/main-layout';
 import type { SessionPromise } from '../types';
 import { LoadingView } from '../views/loading-view';
 
-async function getSession(): SessionPromise {
-  const res = await axios.get('/auth/verify', { withCredentials: true });
+async function getSessionPlayer(): SessionPromise {
+  try {
+    let res = await axios.get('/auth/verify', { withCredentials: true });
 
-  if (res.status !== 200) return null;
+    if (res.status !== 200) return null;
 
-  return res.data;
+    res = await axios.get('/player', { withCredentials: true });
+
+    if (res.status !== 200) return null;
+
+    return res.data;
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    return null;
+  }
 }
 
 export function AppRoot() {
-  const sessionPromise = getSession().catch(() => null);
+  const playerPromise = getSessionPlayer().catch(() => null);
 
   return (
     <Suspense fallback={<LoadingView />}>
-      <MainLayout sessionPromise={sessionPromise} />
+      <MainLayout playerPromise={playerPromise} />
     </Suspense>
   );
 }
