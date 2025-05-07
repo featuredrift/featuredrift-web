@@ -6,17 +6,20 @@ import { LoadingView } from '../views/loading-view';
 
 async function getSessionPlayer(): SessionPromise {
   try {
-    let res = await axios.get('/auth/verify', { withCredentials: true });
+    const res = await axios.get('/api/v1/game/player', {
+      withCredentials: true,
+    });
 
-    if (res.status !== 200) return null;
-
-    res = await axios.get('/player', { withCredentials: true });
-
-    if (res.status !== 200) return null;
+    if (res.status !== 200) {
+      return null;
+    }
 
     return res.data;
   } catch (error) {
-    console.error('Error fetching session:', error);
+    if (!axios.isAxiosError(error) || error.response?.status !== 401) {
+      console.error('Error fetching session:', error);
+    }
+
     return null;
   }
 }
