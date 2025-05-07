@@ -11,10 +11,10 @@ export function AuthLoginView() {
         />
       </div>
       <LinkButton to="/auth/login" target="_self">
-        Begin Drift
+        Authenticate
       </LinkButton>
       <LinkButton to="https://github.com/featuredrift/featuredrift-web/fork">
-        Hack the Skin
+        Vandalize UI
       </LinkButton>
     </div>
   );
