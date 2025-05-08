@@ -18,6 +18,8 @@ export function AuthButton(
 }
 
 export function AuthLoginView() {
+  const authError = new URLSearchParams(window.location.search).get('error');
+
   return (
     <div className="flex flex-col gap-8 justify-center items-center min-h-full">
       <div className="flex flex-row justify-center align-middle">
@@ -27,6 +29,7 @@ export function AuthLoginView() {
           className="max-h-[50vh] w-auto motion-safe:animate-pulse"
         />
       </div>
+      {authError && <div className="!text-red-500 text-xs">{authError}</div>}
       <AuthButton href="/auth/login">Authenticate</AuthButton>
       <AuthButton
         href="https://github.com/featuredrift/featuredrift-web/fork"

@@ -6,7 +6,7 @@ import { useMutation } from '../data/data-context';
 export function useCreateAvatar() {}
 
 export function CreateAvatarView() {
-  const [mutate] = useMutation<AvatarPayload>(createPlayerAvatar, {
+  const [mutate, isMutating] = useMutation<AvatarPayload>(createPlayerAvatar, {
     invalidate: ['player', 'avatars'],
   });
 
@@ -23,6 +23,8 @@ export function CreateAvatarView() {
 
   const [, submitAction, isPending] = useActionState(action, null);
 
+  const disabled = isMutating || isPending;
+
   return (
     <form action={submitAction}>
       <div>Create a new avatar</div>
@@ -35,6 +37,7 @@ export function CreateAvatarView() {
           name="avatar-name"
           type="text"
           className="bg-amber-50 text-black"
+          disabled={disabled}
         />
       </div>
       <div>
@@ -45,9 +48,10 @@ export function CreateAvatarView() {
           id="avatar-bio"
           name="avatar-bio"
           className="bg-amber-50 text-black"
+          disabled={disabled}
         />
       </div>
-      <Button type="submit" disabled={isPending}>
+      <Button type="submit" disabled={disabled}>
         Create
       </Button>
     </form>
