@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useTransition } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useSyncExternalStore,
+  useTransition,
+} from 'react';
 import { fetchPlayer, fetchPlayerAvatars } from './api';
 import { DataClient } from './data-client';
 
@@ -18,32 +24,43 @@ export function useClient() {
   return ctx;
 }
 
-export function usePlayer() {
+function useQuery<T>(key: string, fetcher: () => Promise<T>) {
   const client = useClient();
 
-  return client.read('player', () => fetchPlayer());
+  return useSyncExternalStore(
+    (cb) => client.subscribe(key, cb),
+    () => client.getSnapshot(key, fetcher),
+  );
+}
+
+export function usePlayer() {
+  return useQuery('player', () => fetchPlayer());
 }
 
 export function useAvatars() {
-  const client = useClient();
-
-  return client.read('avatars', () => fetchPlayerAvatars());
+  return useQuery('avatars', () => fetchPlayerAvatars());
 }
 
-export function useMutation<TArgs>(
-  mutateFn: (args?: TArgs) => Promise<unknown>,
-  invalidateKeys: string[],
+export function useMutation<T>(
+  mutate: (arg: T) => Promise<unknown>,
+  {
+    invalidate = [],
+    optimistic,
+  }: {
+    invalidate?: string[];
+    optimistic?: (arg: T, client: DataClient) => void;
+  } = {},
 ) {
   const client = useClient();
   const [pending, startTransition] = useTransition();
 
-  async function mutate(args?: TArgs) {
-    await mutateFn(args);
+  async function run(arg: T) {
+    optimistic?.(arg, client);
 
-    startTransition(() => {
-      invalidateKeys.forEach((k) => client.invalidate(k));
-    });
+    await mutate(arg);
+
+    startTransition(() => invalidate.forEach((k) => client.invalidate(k)));
   }
 
-  return [mutate, pending] as const;
+  return [run, pending] as const;
 }

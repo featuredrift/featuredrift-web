@@ -31,16 +31,18 @@ export async function fetchPlayerAvatars(): Promise<PlayerAvatar[]> {
   return res.data;
 }
 
+export interface AvatarPayload {
+  name: string;
+  bio: string;
+}
+
 export async function createPlayerAvatar(
-  avatarName: string,
-  bio: string,
+  payload: AvatarPayload,
 ): Promise<PlayerAvatar | null> {
   try {
-    const res = await axios.post(
-      '/api/v1/game/player/avatars',
-      { name: avatarName, bio },
-      { withCredentials: true },
-    );
+    const res = await axios.post('/api/v1/game/player/avatars', payload, {
+      withCredentials: true,
+    });
 
     return res.data;
   } catch (error) {

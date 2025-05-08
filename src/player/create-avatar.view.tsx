@@ -1,28 +1,27 @@
-import { useActionState, useEffect } from 'react';
+import { useActionState } from 'react';
 import { Button } from '../common/button/button';
-import { createPlayerAvatar } from '../data/api';
-import { useClient } from '../data/data-context';
-import type { PlayerAvatar } from './types';
+import { type AvatarPayload, createPlayerAvatar } from '../data/api';
+import { useMutation } from '../data/data-context';
+
+export function useCreateAvatar() {}
 
 export function CreateAvatarView() {
-  const client = useClient();
-  const [avatar, submitAction, isPending] = useActionState(
-    async (_previousState: PlayerAvatar | null, formData: FormData) => {
-      const avatar = await createPlayerAvatar(
-        formData.get('avatar-name') as string,
-        formData.get('avatar-bio') as string,
-      );
+  const [mutate] = useMutation<AvatarPayload>(createPlayerAvatar, {
+    invalidate: ['player', 'avatars'],
+  });
 
-      return avatar;
-    },
-    null,
-  );
+  const action = async (_prev: null, fd: FormData) => {
+    const payload = {
+      name: fd.get('avatar-name') as string,
+      bio: fd.get('avatar-bio') as string,
+    };
 
-  useEffect(() => {
-    if (!avatar) return;
+    await mutate(payload);
 
-    window.location.pathname = '/';
-  }, [avatar, client]);
+    return null;
+  };
+
+  const [, submitAction, isPending] = useActionState(action, null);
 
   return (
     <form action={submitAction}>
