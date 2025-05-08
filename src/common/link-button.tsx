@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import buttonStyles from '../button/button.module.css';
+import buttonStyles from './button/button.module.css';
 
 export function LinkButton(
   props: React.DetailedHTMLProps<

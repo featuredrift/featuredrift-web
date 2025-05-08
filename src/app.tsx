@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { AuthGate } from './auth/auth.gate';
-import { LoadingView } from './common/loading.view';
 import { DataProvider } from './data/data-context';
 import { HomeView } from './game/home.view';
+import { LoadingView } from './game/loading.view';
 import { PlayerGate } from './player/player.gate';
 
 export function App() {

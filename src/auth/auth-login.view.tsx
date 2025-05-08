@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { LinkButton } from '../common/link-button/link-button';
+import { LinkButton } from '../common/link-button';
 
 export function AuthButton(
   props: React.DetailedHTMLProps<
@@ -11,7 +11,7 @@ export function AuthButton(
 
   return (
     <LinkButton
-      className={classNames('text-2xl p-4', classNameFromProps)}
+      className={classNames('text-2xl p-4 active:italic', classNameFromProps)}
       {...rest}
     >
       {props.children}

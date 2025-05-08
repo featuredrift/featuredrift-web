@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type { PropsWithChildren } from 'react';
-import { LinkButton } from '../common/link-button/link-button';
+import { LinkButton } from '../common/link-button';
 import { usePlayer } from '../player/hooks';
 
 export function LogoutButton() {
