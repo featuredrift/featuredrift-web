@@ -1,13 +1,14 @@
-import { CloseButton } from '../components/close-button/close-button';
-import type { PlayerResponse } from '../types';
+import { usePlayer } from '../data/data-context';
 
-export function HomeUserView({ player }: { player: PlayerResponse }) {
+export function HomeView() {
+  const player = usePlayer();
+
   return (
     <>
       <div className="h-full flex items-center justify-center">
         <div className="inline-flex flex-col text-left text-2xl gap-1 text-purple-600 animate-pulse">
           <div>
-            <span className="text-cyan-500">{player.displayName}</span>,
+            <span className="text-cyan-500">{player?.activeAvatar?.name}</span>,
           </div>
           <div className="italic">
             <>You have been activated</>
@@ -21,7 +22,6 @@ export function HomeUserView({ player }: { player: PlayerResponse }) {
           </div>
         </div>
       </div>
-      <CloseButton />
     </>
   );
 }

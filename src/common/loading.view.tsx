@@ -1,4 +1,4 @@
-import { Loading } from '../components/loading/loading';
+import { Loading } from './loading/loading';
 
 export function LoadingView() {
   return (

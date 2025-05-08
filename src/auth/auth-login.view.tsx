@@ -1,0 +1,39 @@
+import classNames from 'classnames';
+import { LinkButton } from '../common/link-button/link-button';
+
+export function AuthButton(
+  props: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >,
+) {
+  const { className: classNameFromProps, ...rest } = props;
+  const classes = classNames('text-2xl p-4', classNameFromProps);
+
+  return (
+    <LinkButton className={classes} {...rest}>
+      {props.children}
+    </LinkButton>
+  );
+}
+
+export function AuthLoginView() {
+  return (
+    <div className="flex flex-col gap-8 justify-center items-center min-h-full">
+      <div className="flex flex-row justify-center align-middle">
+        <img
+          src="/assets/featuredrift-ai-art.png"
+          alt="FeatureDrift AI Art"
+          className="max-h-[50vh] w-auto motion-safe:animate-pulse"
+        />
+      </div>
+      <AuthButton href="/auth/login">Authenticate</AuthButton>
+      <AuthButton
+        href="https://github.com/featuredrift/featuredrift-web/fork"
+        target="_blank"
+      >
+        Vandalize UI
+      </AuthButton>
+    </div>
+  );
+}

@@ -1,11 +1,9 @@
 @reference 'tailwindcss';
 
-.closeBtn {
+.button {
   @apply
-    fixed top-4 right-4 h-10 w-10
-    cursor-pointer    
-
-    text-2xl text-center
+    cursor-pointer
+    text-center
     align-baseline
     text-purple-600
     hover:text-cyan-400
@@ -19,6 +17,4 @@
     border-purple-700
     hover:border-transparent
     active:border-cyan-600;
-
-  line-height: 35px;
 }
