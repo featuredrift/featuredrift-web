@@ -50,16 +50,16 @@ export class DataClient {
 
   #create<T>(key: string, fetcher: () => Promise<T>): T {
     const promise = fetcher()
-      .then((d) => {
-        this.set(key, d);
+      .then((data) => {
+        this.set(key, data);
 
-        return d;
+        return data;
       })
-      .catch((e) => {
-        this.cache.set(key, { status: Status.rejected, error: e });
+      .catch((err) => {
+        this.cache.set(key, { status: Status.rejected, error: err });
         this.#notify(key);
 
-        throw e;
+        throw err;
       });
 
     this.cache.set(key, { status: Status.pending, promise });

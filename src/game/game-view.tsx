@@ -1,6 +1,6 @@
 import { usePlayer } from '../player/hooks';
 
-export function HomeView() {
+export function GameView() {
   const player = usePlayer();
 
   return (

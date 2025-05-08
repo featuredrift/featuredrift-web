@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
-import { CreateAvatarView } from './create-avatar.view';
+import { CreateAvatarView } from './create-avatar-view';
 import { usePlayer, usePlayerAvatars } from './hooks';
 
-export function PlayerGate({ children }: PropsWithChildren) {
+export function PlayerAvatarGate({ children }: PropsWithChildren) {
   const player = usePlayer();
 
   if (player?.activeAvatarId) {

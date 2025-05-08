@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { AuthGate } from './auth/auth.gate';
+import { AuthGate } from './auth/auth-gate';
 import { DataProvider } from './data/data-context';
-import { HomeView } from './game/home.view';
-import { LoadingView } from './game/loading.view';
-import { PlayerGate } from './player/player.gate';
+import { GameView } from './game/game-view';
+import { LoadingView } from './loading-view';
+import { PlayerAvatarGate } from './player/player-avatar-gate';
 
 export function App() {
   return (
@@ -12,9 +12,9 @@ export function App() {
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <Suspense fallback={<LoadingView />}>
           <AuthGate>
-            <PlayerGate>
-              <HomeView />
-            </PlayerGate>
+            <PlayerAvatarGate>
+              <GameView />
+            </PlayerAvatarGate>
           </AuthGate>
         </Suspense>
       </ErrorBoundary>
