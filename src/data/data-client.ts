@@ -1,4 +1,3 @@
-// data-client.ts
 enum Status {
   pending = 'pending',
   fulfilled = 'fulfilled',
@@ -13,7 +12,6 @@ type Entry<T> =
 export class DataClient {
   private cache = new Map<string, Entry<unknown>>();
 
-  /** read suspends or returns the cached data */
   read<T>(key: string, fetcher: () => Promise<T>): T {
     const cached = this.cache.get(key) as Entry<T> | undefined;
 
@@ -21,16 +19,13 @@ export class DataClient {
     if (cached.status === Status.fulfilled) return cached.data;
     if (cached.status === Status.rejected) throw cached.error;
 
-    // pending → throw promise so Suspense shows fallback
     throw cached.promise;
   }
 
-  /** force a new request; useful for hard refetch */
   invalidate(key: string) {
     this.cache.delete(key);
   }
 
-  /** write fresh data optimistically or after mutation */
   set<T>(key: string, data: T) {
     this.cache.set(key, { status: Status.fulfilled, data });
   }
@@ -48,6 +43,6 @@ export class DataClient {
 
     this.cache.set(key, { status: Status.pending, promise });
 
-    throw promise; // ⬅ Suspense will catch this :contentReference[oaicite:0]{index=0}
+    throw promise;
   }
 }
