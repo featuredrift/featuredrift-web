@@ -42,10 +42,9 @@ export function CreateAvatarView() {
         <label htmlFor="avatar-bio">Bio</label>
       </div>
       <div>
-        <input
+        <textarea
           id="avatar-bio"
           name="avatar-bio"
-          type="text"
           className="bg-amber-50 text-black"
         />
       </div>
