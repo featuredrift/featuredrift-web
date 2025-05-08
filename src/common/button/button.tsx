@@ -8,7 +8,11 @@ export function Button(
   >,
 ) {
   const { className: classNameFromProps, ...rest } = props;
-  const classes = classNames(styles.button, classNameFromProps);
 
-  return <button className={classes} {...rest}></button>;
+  return (
+    <button
+      className={classNames(styles.button, classNameFromProps)}
+      {...rest}
+    ></button>
+  );
 }

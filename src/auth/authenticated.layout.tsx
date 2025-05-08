@@ -1,24 +1,31 @@
 import classNames from 'classnames';
-import { type PropsWithChildren, useMemo } from 'react';
-import { CloseButton } from '../common/close-button/close-button';
+import type { PropsWithChildren } from 'react';
+import { LinkButton } from '../common/link-button/link-button';
 import { usePlayer } from '../player/hooks';
+
+export function LogoutButton() {
+  return (
+    <LinkButton
+      href="/auth/logout"
+      className="text-2xl fixed top-4 right-4 h-10 w-10 leading-[35px]"
+    >
+      X
+    </LinkButton>
+  );
+}
 
 export default function AuthenticatedLayout({ children }: PropsWithChildren) {
   const player = usePlayer();
 
-  const classNameString = useMemo(
-    () =>
-      classNames(
+  return (
+    <div
+      className={classNames(
         'p-8 h-full overflow-auto relative border-2',
         player !== null ? 'border-purple-700' : 'border-transparent',
-      ),
-    [player],
-  );
-
-  return (
-    <div className={classNameString}>
+      )}
+    >
       {children}
-      {player && <CloseButton />}
+      {player && <LogoutButton />}
     </div>
   );
 }

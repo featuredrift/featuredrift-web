@@ -8,10 +8,12 @@ export function AuthButton(
   >,
 ) {
   const { className: classNameFromProps, ...rest } = props;
-  const classes = classNames('text-2xl p-4', classNameFromProps);
 
   return (
-    <LinkButton className={classes} {...rest}>
+    <LinkButton
+      className={classNames('text-2xl p-4', classNameFromProps)}
+      {...rest}
+    >
       {props.children}
     </LinkButton>
   );
@@ -29,7 +31,7 @@ export function AuthLoginView() {
           className="max-h-[50vh] w-auto motion-safe:animate-pulse"
         />
       </div>
-      {authError && <div className="!text-red-500 text-xs">{authError}</div>}
+      {authError && <div className="text-red-500 text-xs">{authError}</div>}
       <AuthButton href="/auth/login">Authenticate</AuthButton>
       <AuthButton
         href="https://github.com/featuredrift/featuredrift-web/fork"
