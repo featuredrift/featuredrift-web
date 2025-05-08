@@ -1,9 +1,6 @@
 import type { PropsWithChildren } from 'react';
-import {
-  usePlayer,
-  useAvatars as usePlayerAvatars,
-} from '../data/data-context';
 import { CreateAvatarView } from './create-avatar.view';
+import { usePlayer, usePlayerAvatars } from './hooks';
 
 export function PlayerGate({ children }: PropsWithChildren) {
   const player = usePlayer();

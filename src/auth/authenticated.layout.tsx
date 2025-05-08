@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { type PropsWithChildren, useMemo } from 'react';
 import { CloseButton } from '../common/close-button/close-button';
-import { usePlayer } from '../data/data-context';
+import { usePlayer } from '../player/hooks';
 
 export default function AuthenticatedLayout({ children }: PropsWithChildren) {
   const player = usePlayer();

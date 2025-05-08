@@ -5,7 +5,6 @@ import {
   useSyncExternalStore,
   useTransition,
 } from 'react';
-import { fetchPlayer, fetchPlayerAvatars } from './api';
 import { DataClient } from './data-client';
 
 const DataCtx = createContext<DataClient | null>(null);
@@ -24,21 +23,13 @@ export function useClient() {
   return ctx;
 }
 
-function useQuery<T>(key: string, fetcher: () => Promise<T>) {
+export function useQuery<T>(key: string, fetcher: () => Promise<T>) {
   const client = useClient();
 
   return useSyncExternalStore(
     (cb) => client.subscribe(key, cb),
     () => client.getSnapshot(key, fetcher),
   );
-}
-
-export function usePlayer() {
-  return useQuery('player', () => fetchPlayer());
-}
-
-export function useAvatars() {
-  return useQuery('avatars', () => fetchPlayerAvatars());
 }
 
 export function useMutation<T>(

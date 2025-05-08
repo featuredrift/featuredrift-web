@@ -1,4 +1,4 @@
-import { usePlayer } from '../data/data-context';
+import { usePlayer } from '../player/hooks';
 
 export function HomeView() {
   const player = usePlayer();

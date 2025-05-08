@@ -1,4 +1,4 @@
-import { usePlayer } from '../data/data-context';
+import { usePlayer } from '../player/hooks';
 import { AuthLoginView } from './auth-login.view';
 import AuthenticatedLayout from './authenticated.layout';
 
