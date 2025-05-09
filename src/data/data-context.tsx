@@ -37,9 +37,11 @@ export function useMutation<T>(
   {
     invalidate = [],
     optimistic,
+    handleError,
   }: {
     invalidate?: string[];
     optimistic?: (arg: T, client: DataClient) => void;
+    handleError?: (err: unknown) => void;
   } = {},
 ) {
   const client = useClient();
@@ -48,9 +50,14 @@ export function useMutation<T>(
   async function run(arg: T) {
     optimistic?.(arg, client);
 
-    await mutate(arg);
+    try {
+      await mutate(arg);
 
-    startTransition(() => invalidate.forEach((k) => client.invalidate(k)));
+      startTransition(() => invalidate.forEach((k) => client.invalidate(k)));
+    } catch (err) {
+      if (!handleError) throw err;
+      handleError(err);
+    }
   }
 
   return [run, pending] as const;

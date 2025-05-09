@@ -7,7 +7,7 @@ export function LogoutButton() {
   return (
     <LinkButton
       href="/auth/logout"
-      className="text-2xl fixed top-4 right-4 h-10 w-10 leading-[35px]"
+      className="text-2xl fixed top-4 right-4 h-10 w-10 leading-[35px] !bg-[#02070b]"
     >
       X
     </LinkButton>
@@ -20,7 +20,7 @@ export default function AuthenticatedLayout({ children }: PropsWithChildren) {
   return (
     <div
       className={classNames(
-        'p-8 h-full overflow-auto relative border-2',
+        'h-full overflow-auto relative border-2',
         player !== null ? 'border-purple-700' : 'border-transparent',
       )}
     >

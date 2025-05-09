@@ -39,15 +39,9 @@ export interface AvatarPayload {
 export async function createPlayerAvatar(
   payload: AvatarPayload,
 ): Promise<PlayerAvatar | null> {
-  try {
-    const res = await axios.post('/api/v1/game/player/avatars', payload, {
-      withCredentials: true,
-    });
+  const res = await axios.post('/api/v1/game/player/avatars', payload, {
+    withCredentials: true,
+  });
 
-    return res.data;
-  } catch (error) {
-    console.error('Error creating avatar:', error);
-
-    return null;
-  }
+  return res.data;
 }

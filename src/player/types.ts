@@ -5,6 +5,9 @@ export type PlayerResponse = {
   displayName: string;
   activeAvatarId: number | null;
   activeAvatar: PlayerAvatar | null;
+  currentNode: NodeDetails | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type PlayerAvatar = {
@@ -17,4 +20,16 @@ export type PlayerAvatar = {
   energyMax: number;
   energyCurrent: number;
   isAlive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type NodeDetails = {
+  id: number;
+  name: string;
+  description: string;
+  type: string;
+  safetyRating: number;
+  createdAt: string;
+  updatedAt: string;
 };
