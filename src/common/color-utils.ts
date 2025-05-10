@@ -28,3 +28,15 @@ export function hexToRgb(hex: string) {
 export function rgbToHex(r: number, g: number, b: number) {
   return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('');
 }
+
+export function getSafetyRatingColor(safetyRating: number) {
+  if (!safetyRating) {
+    return '#ff0000';
+  } else if (safetyRating === 1) {
+    return '#53eafd';
+  } else if (safetyRating >= 0.5) {
+    return interpolateColor('#ffff00', '#00ff00', (safetyRating - 0.5) * 2);
+  } else {
+    return interpolateColor('#ff0000', '#ffff00', safetyRating * 2);
+  }
+}

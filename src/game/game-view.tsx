@@ -1,5 +1,5 @@
 import { Button } from '../common/button/button';
-import { interpolateColor } from '../common/color-utils';
+import { getSafetyRatingColor } from '../common/color-utils';
 import ProgressBar from '../common/progress-bar/progress-bar';
 import { usePlayer } from '../player/hooks';
 import type { NodeDetails } from '../player/types';
@@ -45,18 +45,6 @@ function LabeledProgress({
     </>
   );
 }
-
-const getSafetyRatingColor = (safetyRating: number) => {
-  if (!safetyRating) {
-    return '#ff0000';
-  } else if (safetyRating === 1) {
-    return '#53eafd';
-  } else if (safetyRating >= 0.5) {
-    return interpolateColor('#ffff00', '#00ff00', (safetyRating - 0.5) * 2);
-  } else {
-    return interpolateColor('#ff0000', '#ffff00', safetyRating * 2);
-  }
-};
 
 function NodeInfoPane({ node }: { node: NodeDetails | null }) {
   if (!node) return null;
