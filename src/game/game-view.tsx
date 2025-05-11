@@ -94,7 +94,7 @@ export function GameView() {
     '????';
 
   return (
-    <div className="flex flex-col h-full min-h-max gap-4 p-8">
+    <div className="flex flex-col h-full min-h-max gap-4 p-4 sm:p-8">
       <div className="grid grid-cols-[auto_1fr_auto] grid-rows-auto gap-4 items-center text-purple-500 text-xl sm:text-2xl">
         <div>
           <PlayerAvatar />
