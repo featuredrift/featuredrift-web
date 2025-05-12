@@ -36,7 +36,7 @@ export function ChatSection() {
         </span>
         <span
           className="text-cyan-400 text-2xl transform transition-transform"
-          style={{ transform: open ? 'rotate(0deg)' : 'rotate(90deg)' }}
+          style={{ transform: open ? 'rotate(0deg)' : 'rotate(180deg)' }}
         >
           ▾
         </span>

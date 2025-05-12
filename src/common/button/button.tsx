@@ -28,7 +28,7 @@ export type ButtonProps<T extends 'button' | 'a'> = (T extends 'button'
   : React.DetailedHTMLProps<
       React.AnchorHTMLAttributes<HTMLAnchorElement>,
       HTMLAnchorElement
-    >) & { type: T } & ButtonPropsWithoutType;
+    >) & { type?: T } & ButtonPropsWithoutType;
 
 export function Button<T extends 'button' | 'a' = 'button'>(
   props: ButtonProps<T>,
