@@ -26,10 +26,10 @@ export function ChatSection() {
   };
 
   return (
-    <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg">
+    <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg border-1 border-purple-700">
       <div
         onClick={() => setOpen(!open)}
-        className="flex justify-between items-center border-t-1 border-purple-600 px-3 py-2 cursor-pointer"
+        className="flex justify-between items-center px-3 py-2 cursor-pointer"
       >
         <span className="text-cyan-400 uppercase text-sm sm:text-base">
           Local Transmissions
