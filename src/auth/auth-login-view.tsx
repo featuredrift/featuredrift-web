@@ -33,11 +33,11 @@ export function AuthLoginView() {
         />
       </div>
       {authError && <div className="text-red-500 text-xs">{authError}</div>}
-      <Button type="a" href="/auth/login" className="px-4 py-3">
+      <Button el="a" href="/auth/login" className="px-4 py-3">
         Authenticate
       </Button>
       <Button
-        type="a"
+        el="a"
         href="https://github.com/featuredrift/featuredrift-web/fork"
         target="_blank"
         className="px-4 py-3"

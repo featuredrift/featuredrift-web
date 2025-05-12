@@ -28,12 +28,12 @@ export type ButtonProps<T extends 'button' | 'a'> = (T extends 'button'
   : React.DetailedHTMLProps<
       React.AnchorHTMLAttributes<HTMLAnchorElement>,
       HTMLAnchorElement
-    >) & { type?: T } & ButtonPropsWithoutType;
+    >) & { el?: T } & ButtonPropsWithoutType;
 
 export function Button<T extends 'button' | 'a' = 'button'>(
   props: ButtonProps<T>,
 ) {
-  const { type = 'button', text, border, bg, className, ...rest } = props;
+  const { el = 'button', text, border, bg, className, ...rest } = props;
 
   const borderDefault = border?.default || 'var(--color-purple-600)';
   const borderHover = border?.hover || borderDefault;
@@ -59,7 +59,7 @@ export function Button<T extends 'button' | 'a' = 'button'>(
         } as React.CSSProperties
       }
     >
-      {createElement(type, {
+      {createElement(el, {
         className: classNames(
           'h-full w-full cornerless cursor-pointer',
           styles.button,
