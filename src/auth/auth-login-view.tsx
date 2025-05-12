@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Button } from '../common/button/button';
 import { LinkButton } from '../common/link-button';
 
 export function AuthButton(
@@ -32,13 +33,17 @@ export function AuthLoginView() {
         />
       </div>
       {authError && <div className="text-red-500 text-xs">{authError}</div>}
-      <AuthButton href="/auth/login">Authenticate</AuthButton>
-      <AuthButton
+      <Button type="a" href="/auth/login" className="px-4 py-3">
+        Authenticate
+      </Button>
+      <Button
+        type="a"
         href="https://github.com/featuredrift/featuredrift-web/fork"
         target="_blank"
+        className="px-4 py-3"
       >
         Vandalize UI
-      </AuthButton>
+      </Button>
     </div>
   );
 }

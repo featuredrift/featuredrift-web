@@ -1,10 +1,8 @@
 import classNames from 'classnames';
+import { createElement } from 'react';
 import styles from './button.module.css';
 
-export type ButtonProps = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
+type ButtonPropsWithoutType = {
   text?: {
     default?: string;
     hover?: string;
@@ -22,8 +20,20 @@ export type ButtonProps = React.DetailedHTMLProps<
   };
 };
 
-export function Button(props: ButtonProps) {
-  const { text, border, bg, className, ...rest } = props;
+export type ButtonProps<T extends 'button' | 'a'> = (T extends 'button'
+  ? React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >
+  : React.DetailedHTMLProps<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >) & { type: T } & ButtonPropsWithoutType;
+
+export function Button<T extends 'button' | 'a' = 'button'>(
+  props: ButtonProps<T>,
+) {
+  const { type = 'button', text, border, bg, className, ...rest } = props;
 
   const borderDefault = border?.default || 'var(--color-purple-600)';
   const borderHover = border?.hover || borderDefault;
@@ -38,7 +48,7 @@ export function Button(props: ButtonProps) {
   return (
     <div
       className={classNames(
-        'flex h-full cornerless p-[1px] overflow-hidden',
+        'flex h-full cornerless p-[1px] overflow-hidden flex-col justify-center items-center',
         styles.container,
       )}
       style={
@@ -49,24 +59,22 @@ export function Button(props: ButtonProps) {
         } as React.CSSProperties
       }
     >
-      <button
-        className={classNames(
-          'h-full w-full cornerless cursor-pointer ',
+      {createElement(type, {
+        className: classNames(
+          'h-full w-full cornerless cursor-pointer',
           styles.button,
           className,
-        )}
-        style={
-          {
-            '--text-color': textDefault,
-            '--text-hover-color': textHover,
-            '--text-active-color': textActive,
-            '--bg-color': bgDefault,
-            '--bg-hover-color': bgHover,
-            '--bg-active-color': bgActive,
-          } as React.CSSProperties
-        }
-        {...rest}
-      ></button>
+        ),
+        style: {
+          '--text-color': textDefault,
+          '--text-hover-color': textHover,
+          '--text-active-color': textActive,
+          '--bg-color': bgDefault,
+          '--bg-hover-color': bgHover,
+          '--bg-active-color': bgActive,
+        } as React.CSSProperties,
+        ...rest,
+      })}
     </div>
   );
 }

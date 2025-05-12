@@ -29,7 +29,7 @@ function CyanActionButton(props: ButtonProps) {
 
 export function ActionButtonsPane() {
   return (
-    <div className="grid grid-cols-2 grid-rows-auto gap-1 sm:gap-2 lg:gap-4 items-center grow min-h-50 max-h-80">
+    <div className="grid grid-cols-2 grid-rows-auto gap-1 sm:gap-2 items-center grow min-h-50 max-h-80">
       <ActionButton>MOVE</ActionButton>
       <CyanActionButton>EXPLORE</CyanActionButton>
       <ActionButton>CHARACTER</ActionButton>
