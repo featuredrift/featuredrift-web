@@ -54,7 +54,7 @@ export function PlayerInfoPane({ player }: { player: PlayerResponse | null }) {
       <div>
         <PlayerAvatar />
       </div>
-      <div className="col-span-2 text-teal-300 text-4xl sm:text-5xl">
+      <div className="col-span-2 text-cyan-300 text-4xl sm:text-5xl">
         {displayName}
       </div>
       <LabeledProgress
