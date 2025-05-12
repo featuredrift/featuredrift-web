@@ -26,7 +26,7 @@ export function ChatSection() {
   };
 
   return (
-    <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg border-1 border-purple-700">
+    <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg border-t-1 border-purple-700">
       <div
         onClick={() => setOpen(!open)}
         className="flex justify-between items-center px-3 py-2 cursor-pointer"
