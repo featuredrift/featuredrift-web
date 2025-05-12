@@ -9,9 +9,9 @@ export function GameView() {
   const player = usePlayer();
 
   return (
-    <div className="min-h-full flex flex-col border-2 border-purple-700">
+    <div className="h-full flex flex-col border-2 border-purple-700">
       {player && <TitleBar />}
-      <div className="flex flex-col gap-2 sm:gap-4 lg:gap-8 p-2 sm:p-4 lg:p-8 grow">
+      <div className="flex flex-col gap-2 sm:gap-4 lg:gap-8 p-2 sm:p-4 lg:p-8 grow overflow-auto">
         <PlayerInfoPane player={player} />
         <NodeInfoPane node={player?.currentNode ?? null} />
         <ActionButtonsPane />

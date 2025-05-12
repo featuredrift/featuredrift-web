@@ -8,7 +8,7 @@ interface Message {
 export function ChatSection() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // auto-scroll on new message
@@ -26,7 +26,7 @@ export function ChatSection() {
   };
 
   return (
-    <div className="flex flex-col justify-end flex-1 bg-dark-bg grow-0">
+    <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg">
       <div
         onClick={() => setOpen(!open)}
         className="flex justify-between items-center border-t-1 border-purple-600 px-3 py-2 cursor-pointer"

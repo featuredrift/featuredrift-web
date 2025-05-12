@@ -1,6 +1,6 @@
 export function TitleBar() {
   return (
-    <div className="flex flex-row border-b-1 border-purple-600 text-center text-xl sm:text-2xl align-middle">
+    <div className="grow-0 flex flex-row border-b-1 border-purple-600 text-center text-xl sm:text-2xl align-middle">
       <div className="grow flex items-center justify-center text-purple-500">
         Feature Drift
       </div>
