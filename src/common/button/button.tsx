@@ -36,14 +36,14 @@ export function Button<T extends 'button' | 'a' = 'button'>(
   const { el = 'button', text, border, bg, className, ...rest } = props;
 
   const borderDefault = border?.default || 'var(--color-purple-600)';
-  const borderHover = border?.hover || borderDefault;
+  const borderHover = border?.hover || 'var(--color-purple-600)';
   const borderActive = border?.active || 'var(--color-cyan-500)';
   const bgDefault = bg?.default || 'var(--color-dark-bg)';
-  const bgHover = bg?.hover || 'var(--color-purple-700)';
+  const bgHover = bg?.hover || 'var(--color-purple-800)';
   const bgActive = bg?.active || 'var(--color-cyan-600)';
-  const textDefault = text?.default || 'var(--color-purple-700)';
-  const textHover = text?.hover || 'var(--color-cyan-400)';
-  const textActive = text?.active || 'var(--color-purple-700)';
+  const textDefault = text?.default || 'var(--color-purple-600)';
+  const textHover = text?.hover || 'var(--color-cyan-500)';
+  const textActive = text?.active || 'var(--color-purple-600)';
 
   return (
     <div
