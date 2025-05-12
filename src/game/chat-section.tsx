@@ -26,13 +26,13 @@ export function ChatSection() {
   };
 
   return (
-    <div className="flex flex-col justify-end flex-1 min-h-50">
+    <div className="flex flex-col justify-end flex-1 bg-dark-bg grow-0">
       <div
         onClick={() => setOpen(!open)}
-        className="flex justify-between items-center border-2 border-purple-600 rounded-t-lg px-3 py-2 cursor-pointer"
+        className="flex justify-between items-center border-t-1 border-purple-600 px-3 py-2 cursor-pointer"
       >
         <span className="text-cyan-400 uppercase text-sm sm:text-base">
-          Local Chat
+          Local Transmissions
         </span>
         <span
           className="text-cyan-400 text-2xl transform transition-transform"
@@ -42,10 +42,10 @@ export function ChatSection() {
         </span>
       </div>
       {open && (
-        <div className="border-x-2 border-b-2 border-purple-600 rounded-b-lg flex flex-col flex-1 min-h-0 overflow-hidden">
+        <div className="border-t-1 border-purple-600 rounded-b-lg flex flex-col flex-1 min-h-0 overflow-hidden">
           <div
             ref={scrollRef}
-            className="flex-1 overflow-y-auto px-3 py-2 space-y-1 font-mono text-xs sm:text-sm text-purple-400"
+            className="grow overflow-y-auto px-3 py-2 space-y-1 font-mono text-xs sm:text-sm text-purple-400 min-h-30 max-h-50"
           >
             {messages.map((msg, i) => (
               <div key={i}>
@@ -60,7 +60,7 @@ export function ChatSection() {
           </div>
           <form
             onSubmit={handleSend}
-            className="border-t-2 border-purple-600 px-3 py-2"
+            className="border-t-1 border-purple-600 px-3 py-2"
           >
             <div className="flex">
               <input
@@ -68,7 +68,7 @@ export function ChatSection() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Enter message..."
-                className="flex-1 bg-transparent text-sm text-purple-400 placeholder-zinc-500 focus:outline-none font-mono"
+                className="grow text-sm text-purple-400 placeholder-zinc-500 focus:outline-none font-mono"
               />
               <button
                 type="submit"

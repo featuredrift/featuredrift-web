@@ -56,4 +56,14 @@ html {
 @theme {
   --animate-pulse: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --font-mono: 'Office Code Pro D', monospace;
+  
+  --color-dark-bg: #02070b;
+}
+
+.dark-bg {
+  background-color: var(--color-dark-bg);
+}
+
+.cornerless {
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
 }
