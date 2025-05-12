@@ -11,7 +11,7 @@ export function NodeInfoPane({ node }: { node: NodeDetails | null }) {
     <div className="col-span-3 bg-purple-600 cornerless p-[1px] flex flex-col items-stretch max-h-40 md:max-h-80 xl:max-h-max">
       <div className="flex flex-col cornerless bg-dark-bg overflow-hidden">
         <div
-          className="text-xl sm:text-2xl md:text-3xl p-2"
+          className="text-xl sm:text-2xl md:text-3xl p-2 border-b-1 border-purple-700"
           style={{ color: safetyRatingColor }}
         >
           {paddedId} - {node.name}
