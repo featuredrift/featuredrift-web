@@ -32,12 +32,12 @@ export function ActionButtonsPane() {
     <div className="grid grid-cols-2 grid-rows-auto gap-1 sm:gap-2 items-center grow min-h-50 max-h-70">
       <ActionButton>MOVE</ActionButton>
       <CyanActionButton>EXPLORE</CyanActionButton>
-      <ActionButton>CHARACTER</ActionButton>
-      <CyanActionButton>WORK</CyanActionButton>
+      <CyanActionButton>CHARACTER</CyanActionButton>
+      <ActionButton>WORK</ActionButton>
       <ActionButton>INVENTORY</ActionButton>
       <CyanActionButton>COMBAT</CyanActionButton>
-      <ActionButton>MAP</ActionButton>
-      <CyanActionButton>PVP</CyanActionButton>
+      <CyanActionButton>MAP</CyanActionButton>
+      <ActionButton>PVP</ActionButton>
     </div>
   );
 }

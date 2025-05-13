@@ -52,10 +52,17 @@ html {
   font-weight: bold;
   font-style: italic;
 }
+@font-face {
+  font-family: 'Glitch Goblin';
+  src: url('/assets/fonts/GlitchGoblin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @theme {
   --animate-pulse: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --font-mono: 'Office Code Pro D', monospace;
+  --font-glitch: 'Glitch Goblin', sans-serif;
   
   --color-dark-bg: #02070b;
 }
