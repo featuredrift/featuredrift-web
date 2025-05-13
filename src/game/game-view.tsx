@@ -11,7 +11,7 @@ export function GameView() {
   return (
     <div className="h-full flex flex-col border-1 border-t-2 border-purple-700">
       {player && <TitleBar />}
-      <div className="flex flex-col gap-2 sm:gap-4 lg:gap-8 p-2 sm:p-4 lg:p-8 grow overflow-auto">
+      <div className="flex flex-col gap-2 sm:gap-4 p-2 sm:p-4 lg:p-8 grow overflow-auto">
         <PlayerInfoPane player={player} />
         <NodeInfoPane node={player?.currentNode ?? null} />
         <ActionButtonsPane />

@@ -50,11 +50,11 @@ export function PlayerInfoPane({ player }: { player: PlayerResponse | null }) {
     '????';
 
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_5fr_auto_4fr_auto] grid-rows-auto items-center gap-2 text-purple-500 text-xl sm:text-2xl">
+    <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_5fr_auto_4fr_auto] grid-rows-auto items-center gap-2 sm:gap-4 text-purple-500 text-xl sm:text-2xl">
       <div className="lg:row-span-2">
         <PlayerAvatar />
       </div>
-      <div className="col-span-2 lg:col-span-1 lg:row-span-2 text-cyan-300 text-4xl sm:text-5xl flex items-center h-full justify-center">
+      <div className="border-1 border-purple-700 col-span-2 lg:col-span-1 lg:row-span-2 text-cyan-300 text-4xl sm:text-5xl flex items-center h-full justify-center">
         {displayName}
       </div>
       <LabeledProgress
