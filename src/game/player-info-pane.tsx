@@ -52,7 +52,7 @@ export function PlayerInfoPane({ player }: { player: PlayerResponse | null }) {
   return (
     <div className="player-info-pane items-center gap-y-0 gap-x-3  text-purple-500">
       <PlayerAvatar />
-      <div className="display-name col-span-2 sm:col-span-1 sm:row-span-2 text-cyan-300 text-xl sm:text-2xl w-full h-full flex items-center">
+      <div className="display-name col-span-2 sm:col-span-1 sm:row-span-2 text-cyan-300 text-3xl sm:max-lg:text-2xl 2xl:text-4xl w-full h-full flex items-center">
         {displayName}
       </div>
       <LabeledProgress
