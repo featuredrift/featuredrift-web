@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { PlayerAvatar, PlayerResponse } from '../player/types';
+import type { PlayerAvatar, PlayerResponse } from '../game/types';
 
 export async function fetchPlayer(): Promise<PlayerResponse | null> {
   try {
