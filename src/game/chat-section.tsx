@@ -32,7 +32,7 @@ export function ChatSection() {
         className="flex justify-between items-center px-3 py-2 cursor-pointer"
       >
         <span className="text-cyan-400 uppercase text-sm sm:text-base">
-          Local Transmissions
+          Transmission Log
         </span>
         <span
           className="text-cyan-400 text-2xl transform transition-transform"
