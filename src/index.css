@@ -10,48 +10,56 @@ html {
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-LightItalic.woff2') format('woff2');
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-RegularItalic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-MediumItalic.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Office Code Pro D';
   src: url('/assets/fonts/OfficeCodeProD-BoldItalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Glitch Goblin';
   src: url('/assets/fonts/GlitchGoblin.otf') format('opentype');
@@ -63,7 +71,7 @@ html {
   --animate-pulse: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --font-mono: 'Office Code Pro D', monospace;
   --font-glitch: 'Glitch Goblin', sans-serif;
-  
+
   --color-dark-bg: #02070b;
 }
 
@@ -78,50 +86,59 @@ html {
 
 .cornerless-b {
   clip-path: polygon(
-    0 0,                      /* 1: Top edge, 0px from left → move right */
-    100% 0,                   /* 2: Top edge, 0px from right → continue right */
-    100% 0,                   /* 3: Right edge, 0px from top → move down */
-    100% calc(100% - 10px),   /* 4: Right edge, 10px from bottom → continue down */
-    calc(100% - 10px) 100%,   /* 5: Bottom edge, 10px from right → move left */
-    10px 100%,                /* 6: Bottom edge, 10px from left → continue left */
-    0 calc(100% - 10px),      /* 7: Left edge, 10px from bottom → move up */
-    0 0                       /* 8: Left edge, 10px from top → continue up and close */
-  );
+      -1px -1px,
+      calc(100% + 1px) -1px,
+      calc(100% + 1px) calc(100% - 11px),
+      calc(100% - 11px) calc(100% + 1px),
+      11px calc(100% + 1px),
+      -1px calc(100% - 11px),
+      -1px -1px
+    );
 }
+
 .action-buttons {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "map explore"
     "character work"
     "inventory combat"
     "settings pvp";
-  @media (width >= 48rem) {
-    grid-template-areas: 
+
+  @media (width >=48rem) {
+    grid-template-areas:
       "map explore inventory combat"
       "character work settings pvp";
   }
-  & > div:nth-child(1) {
+
+  &>div:nth-child(1) {
     grid-area: map;
   }
-  & > div:nth-child(2) {
+
+  &>div:nth-child(2) {
     grid-area: explore;
   }
-  & > div:nth-child(3) {
+
+  &>div:nth-child(3) {
     grid-area: character;
   }
-  & > div:nth-child(4) {
+
+  &>div:nth-child(4) {
     grid-area: work;
   }
-  & > div:nth-child(5) {
+
+  &>div:nth-child(5) {
     grid-area: inventory;
   }
-  & > div:nth-child(6) {
+
+  &>div:nth-child(6) {
     grid-area: combat;
   }
-  & > div:nth-child(7) {
+
+  &>div:nth-child(7) {
     grid-area: settings;
   }
-  & > div:nth-child(8) {
+
+  &>div:nth-child(8) {
     grid-area: pvp;
   }
 }
