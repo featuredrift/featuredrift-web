@@ -80,7 +80,16 @@ html {
 }
 
 .cornerless {
-  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+  clip-path: polygon(
+    11px -1px,
+    calc(100% - 11px) -1px,
+    calc(100% + 1px) 11px,
+    calc(100% + 1px) calc(100% - 11px),
+    calc(100% - 11px) calc(100% + 1px),
+    11px calc(100% + 1px),
+    -1px calc(100% - 11px),
+    -1px 11px
+  );
 }
 
 
@@ -141,4 +150,24 @@ html {
   &>div:nth-child(8) {
     grid-area: pvp;
   }
+}
+
+.player-info-pane {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    [l1] auto [l2] 1fr [l3] auto [l4];
+  grid-template-rows: 4rem 2rem 2rem;
+
+  @media (width >= 40rem) {
+    grid-template-columns:
+      [l1] 4rem [l2] 4fr [l3] auto [l4] 4fr [l5] auto [l6];
+    grid-template-rows: 2rem 2rem;
+  }
+}
+
+.display-name {
+  line-height: 1.1;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }

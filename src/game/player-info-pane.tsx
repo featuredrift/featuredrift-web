@@ -3,7 +3,7 @@ import type { PlayerResponse } from './types';
 
 function PlayerAvatar() {
   return (
-    <div className="cornerless p-[1px] overflow-hidden bg-purple-600 lg:row-span-2">
+    <div className="cornerless p-[1px] overflow-hidden bg-purple-600 sm:row-span-2">
       <div className="bg-dark-bg cornerless">
         <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" fill="none">
           <circle cx="15" cy="10" r="6" stroke="#53eafd" strokeWidth="2" />
@@ -33,7 +33,7 @@ function LabeledProgress({
         max={max}
         minColor="#ff0000"
         maxColor={color}
-        height="100%"
+        height="1.2rem"
       />
       <div>
         {current}/{max}
@@ -50,9 +50,9 @@ export function PlayerInfoPane({ player }: { player: PlayerResponse | null }) {
     '????';
 
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_5fr_auto_4fr_auto] grid-rows-auto items-center gap-2 sm:gap-4 text-purple-500 text-xl sm:text-2xl">
+    <div className="player-info-pane items-center gap-y-0 gap-x-3  text-purple-500">
       <PlayerAvatar />
-      <div className="col-span-2 lg:col-span-1 lg:row-span-2 text-cyan-300 text-4xl sm:text-5xl flex items-center h-full justify-center text-center">
+      <div className="display-name col-span-2 sm:col-span-1 sm:row-span-2 text-cyan-300 text-xl sm:text-2xl w-full h-full flex items-center">
         {displayName}
       </div>
       <LabeledProgress
