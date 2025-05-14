@@ -1,7 +1,7 @@
 import { Button, type ButtonProps } from '../common/button/button';
 
 function ActionButton(props: ButtonProps<'button'>) {
-  return <Button {...props} className="text-base sm:text-xl lg:text-2xl" />;
+  return <Button {...props} className="text-base sm:text-xl lg:text-2xl p-3" />;
 }
 
 function CyanActionButton(props: ButtonProps<'button'>) {
@@ -29,14 +29,14 @@ function CyanActionButton(props: ButtonProps<'button'>) {
 
 export function ActionButtonsPane() {
   return (
-    <div className="grid grid-cols-2 grid-rows-auto gap-1 sm:gap-2 items-center min-h-50 max-h-70">
-      <ActionButton>MOVE</ActionButton>
+    <div className="action-buttons gap-1 sm:gap-2 items-center">
+      <ActionButton>MAP</ActionButton>
       <CyanActionButton>EXPLORE</CyanActionButton>
       <CyanActionButton>CHARACTER</CyanActionButton>
       <ActionButton>WORK</ActionButton>
       <ActionButton>INVENTORY</ActionButton>
       <CyanActionButton>COMBAT</CyanActionButton>
-      <CyanActionButton>MAP</CyanActionButton>
+      <CyanActionButton>SETTINGS</CyanActionButton>
       <ActionButton>PVP</ActionButton>
     </div>
   );
