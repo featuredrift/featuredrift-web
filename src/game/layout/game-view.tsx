@@ -1,8 +1,8 @@
+import { ChatSection } from '../chat/chat-section';
+import { usePlayer } from '../player/hooks';
+import { PlayerInfoPane } from '../player/player-info-pane';
 import { ActionButtonsPane } from './action-buttons-pane';
-import { ChatSection } from './chat-section';
-import { usePlayer } from './hooks';
 import { NodeInfoPane } from './node-info-pane';
-import { PlayerInfoPane } from './player-info-pane';
 import { TitleBar } from './title-bar';
 
 export function GameView() {

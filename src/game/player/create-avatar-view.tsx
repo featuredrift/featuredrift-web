@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 import { useActionState } from 'react';
-import { Button } from '../common/button/button';
-import { type AvatarPayload, createPlayerAvatar } from '../data/api';
-import { useMutation } from '../data/data-context';
+import { Button } from '../../common/button/button';
+import { type AvatarPayload, createPlayerAvatar } from '../../data/api';
+import { useMutation } from '../../data/data-context';
 
 export function useCreateAvatar() {}
 

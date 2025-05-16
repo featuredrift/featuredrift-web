@@ -1,5 +1,5 @@
-import ProgressBar from '../common/progress-bar/progress-bar';
-import type { PlayerResponse } from './types';
+import ProgressBar from '../../common/progress-bar/progress-bar';
+import type { PlayerResponse } from '../types';
 
 function PlayerAvatar() {
   return (

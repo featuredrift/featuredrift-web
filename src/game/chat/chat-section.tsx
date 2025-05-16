@@ -1,15 +1,36 @@
-import { type FormEvent, useEffect, useRef, useState } from 'react';
-
-interface Message {
-  user: string;
-  text: string;
-}
+import { useActionState, useEffect, useRef, useState } from 'react';
+import { useChat } from './hooks';
+import type { Message } from './types';
 
 export function ChatSection() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
+  const chat = useChat();
+  const [messages, setMessages] = useState<Record<string, Message>>({});
   const [open, setOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  console.log(messages);
+
+  const [, dispatch, isPending] = useActionState(
+    async (_state: null, fd: FormData) => {
+      await chat.sendMessage(fd.get('message') as string);
+
+      return null;
+    },
+    null,
+  );
+
+  useEffect(() => {
+    const unsubscribe = chat.subscribe('message', (msg: Message) => {
+      console.log(msg);
+      setMessages((prev) => ({
+        ...prev,
+        [msg.id]: msg,
+      }));
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [chat]);
 
   // auto-scroll on new message
   useEffect(() => {
@@ -18,12 +39,12 @@ export function ChatSection() {
     }
   }, [messages]);
 
-  const handleSend = (e: FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    setMessages([...messages, { user: 'root', text: input }]);
-    setInput('');
-  };
+  // const handleSend = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   if (!input.trim()) return;
+  //   setMessages([...messages, { user: 'root', text: input }]);
+  //   setInput('');
+  // };
 
   return (
     <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg border-t-1 border-purple-700">
@@ -47,32 +68,32 @@ export function ChatSection() {
             ref={scrollRef}
             className="grow overflow-y-auto px-3 py-2 space-y-1 font-mono text-xs sm:text-sm text-purple-400 min-h-30 max-h-50"
           >
-            {messages.map((msg, i) => (
+            {Object.values(messages).map((msg, i) => (
               <div key={i}>
                 <span className="text-cyan-400">{msg.user}:</span> {msg.text}
               </div>
             ))}
-            {messages.length === 0 && (
+            {Object.values(messages).length === 0 && (
               <div className="text-center text-cyan-400 italic font-light text-sm sm:text-base">
                 {'<No transmissions logged>'}
               </div>
             )}
           </div>
           <form
-            onSubmit={handleSend}
+            action={dispatch}
             className="border-t-1 border-purple-600 px-3 py-2"
           >
             <div className="flex">
               <input
                 type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
                 placeholder="Enter message..."
+                name="message"
                 className="grow text-sm text-purple-400 placeholder-zinc-500 focus:outline-none font-mono"
               />
               <button
                 type="submit"
                 className="ml-2 text-cyan-400 uppercase text-base tracking-wide"
+                disabled={isPending}
               >
                 ➤
               </button>
