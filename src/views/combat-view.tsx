@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Button } from '../common/button/button';
 import type { MobType } from '../types';
 import type { useViewManager } from './hooks/use-view-manager.hook';
@@ -6,8 +7,18 @@ export function CombatView(props: {
   mobTypes?: MobType[] | null;
   viewManager: ReturnType<typeof useViewManager>;
 }) {
+  const viewRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    viewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+  }, []);
+
   return (
-    <div className="flex flex-col grow justify-between">
+    <div ref={viewRef} className="flex flex-col grow justify-between">
       <div>
         <div className="text-2xl text-center pb-2">Pick a fight..</div>
         {props.mobTypes && props.mobTypes.length > 0 ? (
