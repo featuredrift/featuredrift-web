@@ -78,6 +78,10 @@ export function ChatSection() {
                 name="message"
                 className="grow text-sm text-purple-400 placeholder-zinc-500 focus:outline-none font-mono"
                 autoFocus
+                autoComplete="off"
+                autoCorrect="on"
+                autoCapitalize="on"
+                spellCheck="true"
               />
               <button
                 type="submit"
