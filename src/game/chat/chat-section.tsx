@@ -77,6 +77,7 @@ export function ChatSection() {
                 placeholder="Enter message..."
                 name="message"
                 className="grow text-sm text-purple-400 placeholder-zinc-500 focus:outline-none font-mono"
+                autoFocus
               />
               <button
                 type="submit"
