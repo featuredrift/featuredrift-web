@@ -29,7 +29,6 @@ export function ChatSection() {
     };
   }, [chat]);
 
-  // auto-scroll on new message
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
