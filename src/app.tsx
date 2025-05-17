@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { AuthGate } from './auth/auth-gate';
 import { DataQueryProvider } from './data/data-query.context';
-import { GameView } from './layout/game-view';
+import { GameLayout } from './layout/game-layout';
 import { LoadingView } from './loading-view';
 import { PlayerAvatarGate } from './player/player-avatar-gate';
 
@@ -13,7 +13,7 @@ export function App() {
         <Suspense fallback={<LoadingView />}>
           <AuthGate>
             <PlayerAvatarGate>
-              <GameView />
+              <GameLayout />
             </PlayerAvatarGate>
           </AuthGate>
         </Suspense>

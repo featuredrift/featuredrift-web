@@ -8,6 +8,10 @@
   &:active {
     background-color: var(--border-active-color);
   }
+
+  &:has(button:disabled) {
+    background-color: var(--border-disabled-color);
+  }
 }
 
 .button {
@@ -22,5 +26,13 @@
   &:active {
     background-color: var(--bg-active-color);
     color: var(--text-active-color);
+  }
+
+  &:disabled {
+    &, &:hover, &:active {
+
+      background-color: var(--bg-disabled-color);
+      color: var(--text-disabled-color);
+    }
   }
 }

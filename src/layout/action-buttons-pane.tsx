@@ -1,4 +1,5 @@
 import { Button, type ButtonProps } from '../common/button/button';
+import type { useViewManager } from '../views/hooks/use-view-manager.hook';
 
 function ActionButton(props: ButtonProps<'button'>) {
   return <Button {...props} className="text-base sm:text-xl lg:text-2xl p-3" />;
@@ -27,17 +28,37 @@ function CyanActionButton(props: ButtonProps<'button'>) {
   );
 }
 
-export function ActionButtonsPane() {
+export function ActionButtonsPane({
+  viewManager,
+}: {
+  viewManager: ReturnType<typeof useViewManager>;
+}) {
   return (
     <div className="action-buttons gap-1 sm:gap-2 items-center">
-      <ActionButton>MAP</ActionButton>
-      <CyanActionButton>EXPLORE</CyanActionButton>
-      <CyanActionButton>CHARACTER</CyanActionButton>
-      <ActionButton>WORK</ActionButton>
-      <ActionButton>INVENTORY</ActionButton>
-      <CyanActionButton>COMBAT</CyanActionButton>
-      <CyanActionButton>SETTINGS</CyanActionButton>
-      <ActionButton>PVP</ActionButton>
+      <ActionButton disabled onClick={() => viewManager.push('map')}>
+        MAP
+      </ActionButton>
+      <CyanActionButton disabled onClick={() => viewManager.push('explore')}>
+        EXPLORE
+      </CyanActionButton>
+      <CyanActionButton disabled onClick={() => viewManager.push('character')}>
+        CHARACTER
+      </CyanActionButton>
+      <ActionButton disabled onClick={() => viewManager.push('work')}>
+        WORK
+      </ActionButton>
+      <ActionButton disabled onClick={() => viewManager.push('inventory')}>
+        INVENTORY
+      </ActionButton>
+      <CyanActionButton onClick={() => viewManager.push('combat')}>
+        COMBAT
+      </CyanActionButton>
+      <CyanActionButton disabled onClick={() => viewManager.push('settings')}>
+        SETTINGS
+      </CyanActionButton>
+      <ActionButton disabled onClick={() => viewManager.push('pvp')}>
+        PVP
+      </ActionButton>
     </div>
   );
 }
