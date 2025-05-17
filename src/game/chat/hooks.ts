@@ -13,7 +13,13 @@ export function useChat() {
   }, []);
 
   const sendMessage = (message: string) => {
-    sockets.chat.emit('message', message);
+    const payload = message.trim();
+
+    if (!payload) {
+      return;
+    }
+
+    sockets.chat.emit('message', payload);
   };
 
   const subscribe = (event: string, callback: (payload: Message) => void) => {

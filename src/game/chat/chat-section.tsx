@@ -8,8 +8,6 @@ export function ChatSection() {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  console.log(messages);
-
   const [, dispatch, isPending] = useActionState(
     async (_state: null, fd: FormData) => {
       await chat.sendMessage(fd.get('message') as string);
@@ -21,7 +19,6 @@ export function ChatSection() {
 
   useEffect(() => {
     const unsubscribe = chat.subscribe('message', (msg: Message) => {
-      console.log(msg);
       setMessages((prev) => ({
         ...prev,
         [msg.id]: msg,
@@ -39,24 +36,15 @@ export function ChatSection() {
     }
   }, [messages]);
 
-  // const handleSend = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   if (!input.trim()) return;
-  //   setMessages([...messages, { user: 'root', text: input }]);
-  //   setInput('');
-  // };
-
   return (
     <div className="grow-0 flex flex-col justify-end flex-1 bg-dark-bg border-t-1 border-purple-700">
       <div
         onClick={() => setOpen(!open)}
-        className="flex justify-between items-center px-3 py-2 cursor-pointer"
+        className="flex justify-between items-center px-3 py-2 cursor-pointer text-purple-500"
       >
-        <span className="text-cyan-400 uppercase text-sm sm:text-base">
-          Transmission Log
-        </span>
+        <span className="uppercase text-sm sm:text-base">Transmission Log</span>
         <span
-          className="text-cyan-400 text-2xl transform transition-transform"
+          className="text-2xl transform transition-transform"
           style={{ transform: open ? 'rotate(0deg)' : 'rotate(180deg)' }}
         >
           ▾
