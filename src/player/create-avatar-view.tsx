@@ -1,5 +1,5 @@
-import { Button } from '../../common/button/button';
-import { useCreateAvatar } from './hooks';
+import { Button } from '../common/button/button';
+import { useCreateAvatar } from './hooks/use-create-avatar.hook';
 
 export function CreateAvatarView() {
   const { submitAction, disabled, state } = useCreateAvatar();

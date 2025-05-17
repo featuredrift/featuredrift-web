@@ -1,20 +1,8 @@
 import { AxiosError } from 'axios';
 import { useActionState } from 'react';
-import {
-  type AvatarPayload,
-  createPlayerAvatar,
-  fetchPlayer,
-  fetchPlayerAvatars,
-} from '../../data/api';
-import { useMutation, useQuery } from '../../data/data-context';
+import { type AvatarPayload, createPlayerAvatar } from '../../data/api';
+import { useMutation } from '../../data/hooks/use-mutation.hook';
 
-export function usePlayer() {
-  return useQuery('player', () => fetchPlayer());
-}
-
-export function usePlayerAvatars() {
-  return useQuery('avatars', () => fetchPlayerAvatars());
-}
 interface CreateAvatarActionState {
   data: {
     name: string;

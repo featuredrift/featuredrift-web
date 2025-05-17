@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from '../../common/button/button';
+import { Button, type ButtonProps } from '../common/button/button';
 
 function ActionButton(props: ButtonProps<'button'>) {
   return <Button {...props} className="text-base sm:text-xl lg:text-2xl p-3" />;

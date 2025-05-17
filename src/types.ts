@@ -33,3 +33,9 @@ export type NodeDetails = {
   createdAt: string;
   updatedAt: string;
 };
+
+export interface ChatMessage {
+  id: string;
+  user: string;
+  text: string;
+}

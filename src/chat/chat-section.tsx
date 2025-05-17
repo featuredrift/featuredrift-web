@@ -1,33 +1,18 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
-import { useChat } from './hooks';
-import type { Message } from './types';
+import { useChat } from './use-chat.hook';
 
 export function ChatSection() {
-  const chat = useChat();
-  const [messages, setMessages] = useState<Record<string, Message>>({});
-  const [open, setOpen] = useState(true);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
+  const { messages, sendMessage } = useChat();
   const [, dispatch, isPending] = useActionState(
-    async (_state: null, fd: FormData) => {
-      await chat.sendMessage(fd.get('message') as string);
+    async (state: null, fd: FormData) => {
+      await sendMessage(fd.get('message') as string);
 
-      return null;
+      return state;
     },
     null,
   );
-
-  useEffect(() => {
-    const unsubscribe = chat.subscribe('message', (msg: Message) => {
-      setMessages((prev) => ({
-        ...prev,
-        [msg.id]: msg,
-      }));
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [chat]);
+  const [open, setOpen] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
