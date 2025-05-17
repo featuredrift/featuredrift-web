@@ -5,7 +5,7 @@ import type { Message } from './types';
 export function ChatSection() {
   const chat = useChat();
   const [messages, setMessages] = useState<Record<string, Message>>({});
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [, dispatch, isPending] = useActionState(
