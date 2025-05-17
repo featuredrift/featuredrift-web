@@ -1,97 +1,71 @@
-import { AxiosError } from 'axios';
-import { useActionState } from 'react';
 import { Button } from '../../common/button/button';
-import { type AvatarPayload, createPlayerAvatar } from '../../data/api';
-import { useMutation } from '../../data/data-context';
-
-export function useCreateAvatar() {}
-
-interface CreateAvatarActionState {
-  data: {
-    name: string;
-    bio: string;
-  };
-  validation?: string | string[];
-}
+import { useCreateAvatar } from './hooks';
 
 export function CreateAvatarView() {
-  const [mutate, isMutating] = useMutation<AvatarPayload>(createPlayerAvatar, {
-    invalidate: ['player', 'avatars'],
-  });
-
-  const action = async (_prev: CreateAvatarActionState, fd: FormData) => {
-    const state: CreateAvatarActionState = {
-      data: {
-        name: fd.get('avatar-name') as string,
-        bio: fd.get('avatar-bio') as string,
-      },
-    };
-
-    try {
-      await mutate(state.data);
-    } catch (err) {
-      if (
-        err instanceof AxiosError &&
-        err.response &&
-        err.response.status === 400 &&
-        err.response.data.message
-      ) {
-        state.validation = err.response.data.message;
-      } else {
-        throw err;
-      }
-    }
-
-    return state;
-  };
-
-  const [state, submitAction, isPending] = useActionState(action, {
-    data: {
-      bio: '',
-      name: '',
-    },
-  });
-
-  const disabled = isMutating || isPending;
+  const { submitAction, disabled, state } = useCreateAvatar();
 
   return (
-    <form action={submitAction}>
-      <div>Create a new avatar</div>
-      <div>
-        <label htmlFor="avatar-name">Name</label>
+    <div className="flex sm:items-center justify-center min-h-full p-5">
+      <div className="cornerless bg-purple-700 p-[1px]">
+        <form
+          action={submitAction}
+          className="w-full max-w-md p-8 space-y-6 bg-dark-bg cornerless min-h-full sm:min-h-0"
+        >
+          <div className="text-2xl font-bold mb-2 text-center">
+            Avatar Synthesis
+          </div>
+          <div className="text-sm mb-4 text-center font-bold italic">
+            Slots available: 1
+          </div>
+          <div className="text-base mb-4">
+            Create your avatar by providing a name and a bio. The avatar will be
+            generated based on the provided information.
+          </div>
+          <div>
+            <label
+              htmlFor="avatar-name"
+              className="block text-sm font-medium mb-1"
+            >
+              Name
+            </label>
+            <input
+              id="avatar-name"
+              name="avatar-name"
+              type="text"
+              className="w-full px-4 py-2 border border-purple-700 focus:outline-none focus:ring-2"
+              disabled={disabled}
+              defaultValue={state.data.name}
+              autoFocus
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="avatar-bio"
+              className="block text-sm font-medium mb-1"
+            >
+              Bio
+            </label>
+            <textarea
+              id="avatar-bio"
+              name="avatar-bio"
+              rows={4}
+              className="w-full px-4 py-2 border border-purple-700 focus:outline-none focus:ring-2"
+              disabled={disabled}
+              defaultValue={state.data.bio}
+            />
+          </div>
+          {state.validation && (
+            <div className="text-red-500 text-sm">
+              {Array.isArray(state.validation)
+                ? state.validation.map((msg, i) => <div key={i}>{msg}</div>)
+                : state.validation}
+            </div>
+          )}
+          <Button type="submit" disabled={disabled} className="py-2">
+            Create
+          </Button>
+        </form>
       </div>
-      <div>
-        <input
-          id="avatar-name"
-          name="avatar-name"
-          type="text"
-          className="bg-amber-50 text-black"
-          disabled={disabled}
-          defaultValue={state.data.name}
-        />
-      </div>
-      <div>
-        <label htmlFor="avatar-bio">Bio</label>
-      </div>
-      <div>
-        <textarea
-          id="avatar-bio"
-          name="avatar-bio"
-          className="bg-amber-50 text-black"
-          disabled={disabled}
-          defaultValue={state.data.bio}
-        />
-      </div>
-      {state.validation && (
-        <div className="text-red-500">
-          {Array.isArray(state.validation)
-            ? state.validation.map((msg, i) => <div key={i}>{msg}</div>)
-            : state.validation}
-        </div>
-      )}
-      <Button type="submit" disabled={disabled}>
-        Create
-      </Button>
-    </form>
+    </div>
   );
 }
