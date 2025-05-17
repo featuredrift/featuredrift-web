@@ -32,6 +32,14 @@ export type NodeDetails = {
   safetyRating: number;
   createdAt: string;
   updatedAt: string;
+  mobTypes: MobType[] | null;
+};
+
+export type MobType = {
+  name: string;
+  const_name: string;
+  description: string;
+  level: number;
 };
 
 export interface ChatMessage {

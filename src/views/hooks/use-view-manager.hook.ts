@@ -41,11 +41,11 @@ const viewReducer = (
     }
 
     case 'pop': {
-      if (!state.previous.length) return state;
-
       return {
         ...state,
-        current: state.previous[state.previous.length - 1],
+        current: state.previous.length
+          ? state.previous[state.previous.length - 1]
+          : null,
         previous: state.previous.slice(0, -1),
       };
     }
@@ -69,5 +69,9 @@ export function useViewManager() {
     });
   };
 
-  return { push: pushView, current: state.current };
+  const popView = () => {
+    dispatch({ name: 'pop' });
+  };
+
+  return { push: pushView, back: popView, current: state.current };
 }

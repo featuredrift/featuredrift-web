@@ -21,7 +21,10 @@ export function GameLayout() {
         {viewManager.current && (
           <>
             {viewManager.current === 'combat' ? (
-              <CombatView />
+              <CombatView
+                mobTypes={player?.currentNode?.mobTypes}
+                viewManager={viewManager}
+              />
             ) : (
               'feature not implemented'
             )}
