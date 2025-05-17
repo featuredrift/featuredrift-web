@@ -25,6 +25,10 @@ const viewReducer = (
 ) => {
   switch (action.name) {
     case 'push': {
+      if (state.current === action.payload) {
+        return state;
+      }
+
       return {
         ...state,
         current: action.payload,
