@@ -8,18 +8,20 @@ export function CreateAvatarView() {
     <div className="grow flex items-center justify-center">
       <form
         action={submitAction}
-        className="p-8 space-y-6 bg-dark-bg flex flex-col sm:max-w-2xl"
+        className="p-8 space-y-4 bg-dark-bg flex flex-col sm:max-w-2xl"
         autoComplete="off"
       >
         <div className="text-2xl font-bold text-center">
           Synthesize New Avatar
         </div>
-        <div className="text-xs text-center font-bold italic">
-          Available Slots: <span className="text-cyan-500">1</span>
-        </div>
-        <div className="text-base">
-          Create your avatar by providing a name and a bio. The avatar will be
-          generated based on the provided information.
+        <div className="space-y-2">
+          <div className="text-xs text-center font-bold italic">
+            Available Slots: <span className="text-cyan-500">1</span>
+          </div>
+          <div className="text-base">
+            Create your avatar by providing a name and a bio. The avatar will be
+            generated based on the provided information.
+          </div>
         </div>
         <div>
           <label htmlFor="avatar-name" className="block text-sm font-medium">
@@ -41,7 +43,7 @@ export function CreateAvatarView() {
         <div className="grow flex flex-col">
           <label
             htmlFor="avatar-bio"
-            className="block text-sm font-medium mb-1 grow-0"
+            className="block text-sm font-medium grow-0"
           >
             Bio
           </label>
