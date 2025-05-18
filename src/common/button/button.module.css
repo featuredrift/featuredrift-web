@@ -1,7 +1,8 @@
 .container {
   background-color: var(--border-color);
 
-  &:hover {
+  &:hover,
+  &:has(button):focus {
     background-color: var(--border-hover-color);
   }
 
@@ -17,8 +18,9 @@
 .button {
   background-color: var(--bg-color);
   color: var(--text-color);
+  outline: none;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: var(--bg-hover-color);
     color: var(--text-hover-color);
   }
@@ -29,7 +31,10 @@
   }
 
   &:disabled {
-    &, &:hover, &:active {
+
+    &,
+    &:hover,
+    &:active {
 
       background-color: var(--bg-disabled-color);
       color: var(--text-disabled-color);

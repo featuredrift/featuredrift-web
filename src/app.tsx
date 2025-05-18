@@ -4,7 +4,6 @@ import { AuthGate } from './auth/auth-gate';
 import { DataQueryProvider } from './data/data-query.context';
 import { GameLayout } from './layout/game-layout';
 import { LoadingView } from './loading-view';
-import { PlayerAvatarGate } from './player/player-avatar-gate';
 
 export function App() {
   return (
@@ -12,9 +11,7 @@ export function App() {
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <Suspense fallback={<LoadingView />}>
           <AuthGate>
-            <PlayerAvatarGate>
-              <GameLayout />
-            </PlayerAvatarGate>
+            <GameLayout />
           </AuthGate>
         </Suspense>
       </ErrorBoundary>
