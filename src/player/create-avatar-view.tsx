@@ -65,7 +65,7 @@ export function CreateAvatarView() {
         )}
         <div>
           <Button type="submit" disabled={disabled} className="py-2">
-            Create
+            Synthesize
           </Button>
         </div>
       </form>
