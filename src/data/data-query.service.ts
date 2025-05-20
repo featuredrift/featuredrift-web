@@ -9,7 +9,7 @@ type Entry<T> =
   | { status: Status.fulfilled; data: T }
   | { status: Status.rejected; error: unknown };
 
-export class DataClient {
+export class DataQueryService {
   private cache = new Map<string, Entry<unknown>>();
   private listeners = new Map<string, Set<() => void>>();
 

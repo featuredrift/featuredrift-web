@@ -1,23 +1,20 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { AuthGate } from './auth/auth-gate';
-import { DataProvider } from './data/data-context';
-import { GameView } from './game/game-view';
-import { PlayerAvatarGate } from './game/player-avatar-gate';
+import { DataQueryProvider } from './data/data-query.context';
+import { GameLayout } from './layout/game-layout';
 import { LoadingView } from './loading-view';
 
 export function App() {
   return (
-    <DataProvider>
+    <DataQueryProvider>
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <Suspense fallback={<LoadingView />}>
           <AuthGate>
-            <PlayerAvatarGate>
-              <GameView />
-            </PlayerAvatarGate>
+            <GameLayout />
           </AuthGate>
         </Suspense>
       </ErrorBoundary>
-    </DataProvider>
+    </DataQueryProvider>
   );
 }

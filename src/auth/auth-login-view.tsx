@@ -1,24 +1,4 @@
-import classNames from 'classnames';
 import { Button } from '../common/button/button';
-import { LinkButton } from '../common/link-button';
-
-export function AuthButton(
-  props: React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >,
-) {
-  const { className: classNameFromProps, ...rest } = props;
-
-  return (
-    <LinkButton
-      className={classNames('text-2xl p-4 active:italic', classNameFromProps)}
-      {...rest}
-    >
-      {props.children}
-    </LinkButton>
-  );
-}
 
 export function AuthLoginView() {
   const authError = new URLSearchParams(window.location.search).get('error');

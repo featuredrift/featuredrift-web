@@ -1,5 +1,5 @@
 import { getSafetyRatingColor } from '../common/color-utils';
-import type { NodeDetails } from './types';
+import type { NodeDetails } from '../types';
 
 export function NodeInfoPane({ node }: { node: NodeDetails | null }) {
   if (!node) return null;

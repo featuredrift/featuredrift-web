@@ -1,4 +1,4 @@
-import { usePlayer } from '../game/hooks';
+import { usePlayer } from '../player/hooks/use-player.hook';
 import { AuthLoginView } from './auth-login-view';
 
 export function AuthGate({ children }: { children: React.ReactNode }) {

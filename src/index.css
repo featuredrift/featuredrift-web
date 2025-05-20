@@ -113,7 +113,7 @@ html {
     "inventory combat"
     "settings pvp";
 
-  @media (width >=48rem) {
+  @media (width >= 48rem) {
     grid-template-areas:
       "map explore inventory combat"
       "character work settings pvp";
