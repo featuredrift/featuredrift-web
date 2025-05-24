@@ -1,12 +1,40 @@
 import { ChatSection } from '../chat/chat-section';
 import { usePlayer } from '../player/hooks/use-player.hook';
 import { PlayerAvatarGate } from '../player/player-avatar-gate';
+import type { PlayerResponse } from '../types';
+import { BattleView } from '../views/battle-view';
 import { CombatView } from '../views/combat-view';
-import { useViewManager } from '../views/hooks/use-view-manager.hook';
+import {
+  type ViewEntry,
+  useViewManager,
+} from '../views/hooks/use-view-manager.hook';
 import { ActionButtonsPane } from './action-buttons-pane';
 import { NodeInfoPane } from './node-info-pane';
 import { PlayerInfoPane } from './player-info-pane';
 import { TitleBar } from './title-bar';
+
+const views = {
+  combat: CombatView,
+  battle: BattleView,
+};
+
+const renderView = (
+  viewManager: ReturnType<typeof useViewManager>,
+  player: PlayerResponse,
+) => {
+  const view = viewManager.current as ViewEntry<keyof typeof views> | null;
+
+  if (!view) {
+    return null;
+  }
+
+  const [viewName, viewProps] = view;
+  const ViewComponent = views[viewName];
+
+  return (
+    <ViewComponent player={player} viewManager={viewManager} {...viewProps} />
+  );
+};
 
 export function GameLayout() {
   const player = usePlayer();
@@ -20,18 +48,7 @@ export function GameLayout() {
           <PlayerInfoPane player={player} />
           <NodeInfoPane node={player?.currentNode ?? null} />
           <ActionButtonsPane viewManager={viewManager} />
-          {viewManager.current && (
-            <>
-              {viewManager.current === 'combat' ? (
-                <CombatView
-                  mobTypes={player?.currentNode?.mobTypes}
-                  viewManager={viewManager}
-                />
-              ) : (
-                'feature not implemented'
-              )}
-            </>
-          )}
+          {renderView(viewManager, player!)}
         </div>
         <ChatSection />
       </PlayerAvatarGate>

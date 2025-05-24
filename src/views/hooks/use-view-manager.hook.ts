@@ -1,18 +1,31 @@
 import { useReducer } from 'react';
+import type { PlayerResponse } from '../../types';
+
+export interface ViewProps {
+  player: PlayerResponse;
+  viewManager: ReturnType<typeof useViewManager>;
+}
+
+export type ViewComponent = React.FC<ViewProps>;
+
+export type ViewEntry<T extends string = string> = [
+  route: T,
+  routeProps?: Record<string, unknown>,
+];
 
 interface ViewManagerState {
-  current: string | null;
-  previous: string[];
+  current: ViewEntry | null;
+  previous: ViewEntry[];
 }
 
 interface PushAction {
   name: 'push';
-  payload: string;
+  payload: ViewEntry;
 }
 
 interface ReplaceAction {
   name: 'replace';
-  payload: string;
+  payload: ViewEntry;
 }
 
 interface PopAction {
@@ -66,10 +79,10 @@ export function useViewManager() {
     previous: [],
   } as ViewManagerState);
 
-  const pushView = (viewName: string) => {
+  const pushView = (viewOrName: ViewEntry) => {
     dispatch({
       name: 'push',
-      payload: viewName,
+      payload: typeof viewOrName === 'string' ? [viewOrName] : viewOrName,
     });
   };
 
@@ -77,5 +90,5 @@ export function useViewManager() {
     dispatch({ name: 'pop' });
   };
 
-  return { push: pushView, back: popView, current: state.current };
+  return { push: pushView, back: popView, current: state.current } as const;
 }

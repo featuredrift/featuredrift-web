@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { PlayerAvatar, PlayerResponse } from '../types';
+import type { Mob, PlayerAvatar, PlayerResponse } from '../types';
 
 export async function fetchPlayer(): Promise<PlayerResponse | null> {
   try {
@@ -31,17 +31,26 @@ export async function fetchPlayerAvatars(): Promise<PlayerAvatar[]> {
   return res.data;
 }
 
-export interface AvatarPayload {
+export interface CreatePlayerAvatarDto {
   name: string;
   bio: string;
 }
 
 export async function createPlayerAvatar(
-  payload: AvatarPayload,
+  payload: CreatePlayerAvatarDto,
 ): Promise<PlayerAvatar | null> {
   const res = await axios.post('/api/v1/game/player/avatars', payload, {
     withCredentials: true,
   });
 
   return res.data;
+}
+
+export async function startCombat(mobType: string): Promise<Mob> {
+  const res = await axios.post('/api/v1/game/combat/start', null, {
+    params: { mobType },
+    withCredentials: true,
+  });
+
+  return res.data as Mob;
 }

@@ -1,3 +1,5 @@
+import type { useViewManager } from './views/hooks/use-view-manager.hook';
+
 export type PlayerResponse = {
   id: number;
   discordId: string;
@@ -37,7 +39,7 @@ export type NodeDetails = {
 
 export type MobType = {
   name: string;
-  const_name: string;
+  constName: string;
   description: string;
   level: number;
 };
@@ -46,4 +48,17 @@ export interface ChatMessage {
   id: string;
   user: string;
   text: string;
+}
+
+export interface Mob {
+  id: number;
+  mobTypeId: number;
+  nodeId: number;
+  healthCurrent: number;
+  status: 'alive' | 'dead';
+}
+
+export interface ViewManagerViewProps {
+  player: PlayerResponse;
+  viewManager: ReturnType<typeof useViewManager>;
 }

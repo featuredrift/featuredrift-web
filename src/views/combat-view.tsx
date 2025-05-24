@@ -1,12 +1,19 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '../common/button/button';
-import type { MobType } from '../types';
-import type { useViewManager } from './hooks/use-view-manager.hook';
+import { startCombat } from '../data/api';
+import { useMutation } from '../data/hooks/use-mutation.hook';
+import type { ViewManagerViewProps } from '../types';
 
-export function CombatView(props: {
-  mobTypes?: MobType[] | null;
-  viewManager: ReturnType<typeof useViewManager>;
-}) {
+export function CombatView(props: ViewManagerViewProps) {
+  const mobTypes = props.player.currentNode?.mobTypes;
+
+  const [startCombatMutation, isMutating] = useMutation(startCombat, {
+    invalidate: ['player', 'avatars'],
+    handleSuccess: (mob) => {
+      props.viewManager.push(['battle', { id: mob.id }]);
+    },
+  });
+
   const viewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,14 +28,19 @@ export function CombatView(props: {
     <div ref={viewRef} className="flex flex-col grow justify-between">
       <div>
         <div className="text-2xl text-center pb-2">Pick a fight..</div>
-        {props.mobTypes && props.mobTypes.length > 0 ? (
+        {mobTypes && mobTypes.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-auto">
-            {props.mobTypes.map((mob) => (
-              <Button key={mob.name} disabled className="p-4">
-                <div className="text-lg">{mob.name}</div>
-                <div className="text-xs pb-2">Level: {mob.level}</div>
+            {mobTypes.map((mobType) => (
+              <Button
+                key={mobType.constName}
+                disabled={isMutating}
+                onClick={() => startCombatMutation(mobType.constName)}
+                className="p-4"
+              >
+                <div className="text-lg">{mobType.name}</div>
+                <div className="text-xs pb-2">Level: {mobType.level}</div>
                 <div className="text-sm italic font-thin">
-                  {mob.description}
+                  {mobType.description}
                 </div>
               </Button>
             ))}

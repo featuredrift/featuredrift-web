@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { useActionState } from 'react';
-import { type AvatarPayload, createPlayerAvatar } from '../../data/api';
+import { createPlayerAvatar } from '../../data/api';
 import { useMutation } from '../../data/hooks/use-mutation.hook';
 
 interface CreateAvatarActionState {
@@ -12,7 +12,7 @@ interface CreateAvatarActionState {
 }
 
 export function useCreateAvatar() {
-  const [mutate, isMutating] = useMutation<AvatarPayload>(createPlayerAvatar, {
+  const [mutate, isMutating] = useMutation(createPlayerAvatar, {
     invalidate: ['player', 'avatars'],
   });
 
