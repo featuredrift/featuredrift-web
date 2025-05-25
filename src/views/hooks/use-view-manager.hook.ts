@@ -79,7 +79,7 @@ export function useViewManager() {
     previous: [],
   } as ViewManagerState);
 
-  const pushView = (viewOrName: ViewEntry) => {
+  const pushView = (viewOrName: string | ViewEntry) => {
     dispatch({
       name: 'push',
       payload: typeof viewOrName === 'string' ? [viewOrName] : viewOrName,
