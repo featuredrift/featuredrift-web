@@ -3,14 +3,16 @@ import { Button } from '../common/button/button';
 import { startCombat } from '../data/api';
 import { useMutation } from '../data/hooks/use-mutation.hook';
 import type { ViewManagerViewProps } from '../types';
+import { useActiveMobsQuery } from './hooks/use-active-mobs-query.hook';
 
 export function CombatView(props: ViewManagerViewProps) {
-  const mobTypes = props.player.currentNode?.mobTypes;
+  const mobTypes = props.player.currentNode!.mobTypes!;
+  const activeMobs = useActiveMobsQuery();
 
   const [startCombatMutation, isMutating] = useMutation(startCombat, {
-    invalidate: ['player', 'avatars'],
+    invalidate: ['mobs'],
     handleSuccess: (mob) => {
-      props.viewManager.push(['battle', { id: mob.id }]);
+      props.viewManager.push(['battle', { mobId: mob.id }]);
     },
   });
 
@@ -24,11 +26,49 @@ export function CombatView(props: ViewManagerViewProps) {
     });
   }, []);
 
+  const activeMobButtons = activeMobs.map((mob) => {
+    const mobType = mobTypes.find((type) => type.id === mob.mobTypeId)!;
+    return (
+      <Button
+        key={mob.id}
+        disabled={isMutating}
+        onClick={() => props.viewManager.push(['battle', { mobId: mob.id }])}
+      >
+        <div className="text-lg">{mobType.name}</div>
+        <div className="text-xs pb-2">Level: {mobType.level}</div>
+        <div className="text-sm italic font-thin">{mobType.description}</div>
+        {/* hp bar */}
+        <div className="flex flex-row p-1">
+          <div>HP: </div>
+          <div className="grow h-full bg-gray-700 border">
+            <div
+              className="bg-purple-500"
+              style={{
+                width: `${(mob.healthCurrent / mobType.healthMax) * 100}%`,
+              }}
+            >
+              &nbsp;
+            </div>
+          </div>
+          <div>
+            {mob.healthCurrent} / {mobType.healthMax}
+          </div>
+        </div>
+      </Button>
+    );
+  });
+
   return (
     <div ref={viewRef} className="flex flex-col grow justify-between">
       <div>
-        <div className="text-2xl text-center pb-2">Pick a fight..</div>
-        {mobTypes && mobTypes.length > 0 ? (
+        {activeMobs.length > 0 && (
+          <div className="text-2xl text-center pb-2 flex flex-col gap-2">
+            <div>Existing mobs...</div>
+            {activeMobButtons}
+          </div>
+        )}
+        <div className="text-2xl text-center pb-2">Pick a new fight..</div>
+        {mobTypes.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-auto">
             {mobTypes.map((mobType) => (
               <Button

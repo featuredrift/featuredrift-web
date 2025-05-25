@@ -54,3 +54,11 @@ export async function startCombat(mobType: string): Promise<Mob> {
 
   return res.data as Mob;
 }
+
+export async function fetchActiveMobs(): Promise<Mob[]> {
+  const res = await axios.get('/api/v1/game/combat/active', {
+    withCredentials: true,
+  });
+
+  return res.data;
+}

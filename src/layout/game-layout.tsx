@@ -29,7 +29,12 @@ const renderView = (
   }
 
   const [viewName, viewProps] = view;
-  const ViewComponent = views[viewName];
+  const ViewComponent = views[viewName] as React.FC<
+    React.PropsWithChildren<{
+      player: PlayerResponse;
+      viewManager: ReturnType<typeof useViewManager>;
+    }>
+  >;
 
   return (
     <ViewComponent player={player} viewManager={viewManager} {...viewProps} />

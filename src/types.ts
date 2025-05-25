@@ -38,10 +38,12 @@ export type NodeDetails = {
 };
 
 export type MobType = {
+  id: number;
   name: string;
   constName: string;
   description: string;
   level: number;
+  healthMax: number;
 };
 
 export interface ChatMessage {
