@@ -43,27 +43,29 @@ export function CombatView(props: ViewManagerViewProps) {
   });
 
   return (
-    <div ref={viewRef} className="flex flex-col grow justify-between gap-4">
+    <div ref={viewRef} className="flex flex-col grow justify-between gap-6">
       {activeMobs.length > 0 && (
         <div className="text-2xl text-center flex flex-col gap-2">
           <div>Existing mobs...</div>
-          {activeMobButtons}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-auto gap-2">
+            {activeMobButtons}
+          </div>
         </div>
       )}
       <div>
         <div className="text-2xl text-center pb-2">Pick a new fight..</div>
         {mobTypes.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-auto gap-2">
             {mobTypes.map((mobType) => (
               <Button
                 key={mobType.constName}
                 disabled={isMutating}
                 onClick={() => startCombatMutation(mobType.constName)}
-                className="p-4"
+                className="p-2"
               >
                 <div className="text-lg">{mobType.name}</div>
-                <div className="text-xs pb-2">Level: {mobType.level}</div>
-                <div className="text-sm italic font-thin">
+                <div className="text-xs">Level: {mobType.level}</div>
+                <div className="text-sm italic font-thin pt-2">
                   {mobType.description}
                 </div>
               </Button>
