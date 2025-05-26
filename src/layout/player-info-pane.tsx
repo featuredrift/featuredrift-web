@@ -1,4 +1,4 @@
-import ProgressBar from '../common/progress-bar/progress-bar';
+import { LabeledProgressBar } from '../common/progress-bar/labeled-progress-bar';
 import type { PlayerResponse } from '../types';
 
 function PlayerAvatar() {
@@ -11,34 +11,6 @@ function PlayerAvatar() {
         </svg>
       </div>
     </div>
-  );
-}
-
-function LabeledProgress({
-  label,
-  current = 0,
-  max = 0,
-  color = '#ffffff',
-}: {
-  label: string;
-  color?: string;
-  current?: number;
-  max?: number;
-}) {
-  return (
-    <>
-      <div>{label}</div>
-      <ProgressBar
-        current={current}
-        max={max}
-        minColor="#ff0000"
-        maxColor={color}
-        height="1.2rem"
-      />
-      <div>
-        {current}/{max}
-      </div>
-    </>
   );
 }
 
@@ -55,13 +27,13 @@ export function PlayerInfoPane({ player }: { player: PlayerResponse | null }) {
       <div className="display-name col-span-2 sm:col-span-1 sm:row-span-2 text-cyan-300 text-3xl sm:max-lg:text-2xl 2xl:text-4xl w-full h-full flex items-center">
         {displayName}
       </div>
-      <LabeledProgress
+      <LabeledProgressBar
         label="HEALTH"
         color="#9810fa"
         current={player?.activeAvatar?.healthCurrent}
         max={player?.activeAvatar?.healthMax}
       />
-      <LabeledProgress
+      <LabeledProgressBar
         label="ENERGY"
         color="#53eafd"
         current={player?.activeAvatar?.energyCurrent}
